@@ -5,9 +5,9 @@ import {
   Compass,
   Copy,
   Gauge,
+  House,
   Landmark,
   LayoutDashboard,
-  MapPin,
   Moon,
   Mountain,
   Music,
@@ -31,6 +31,8 @@ import {
   type Pace,
 } from './data/destinations';
 import { formatINR, generateItinerary } from './lib/planner';
+import Logo from './components/Logo';
+import HomePage from './pages/Home';
 import {
   BUDGET_LABELS_I18N,
   GROUP_LABELS_I18N,
@@ -77,6 +79,7 @@ export default function App() {
   const [copied, setCopied] = useState(false);
   const [filter, setFilter] = useState<Interest | 'all'>('all');
   const [tab, setTab] = useState<Tab>('overview');
+  const [view, setView] = useState<'home' | 'app'>('home');
 
   const t = (key: string) => tr(lang, key);
   const interestLabel = INTEREST_LABELS_I18N[lang];
@@ -157,22 +160,34 @@ export default function App() {
     return `conic-gradient(${stops.join(', ')})`;
   }, [itinerary.cost.total]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const marqueeNames = [...DESTINATIONS.map((d) => d.name), ...DESTINATIONS.map((d) => d.name)];
+
+  if (view === 'home') {
+    return (
+      <HomePage
+        lang={lang}
+        onLangChange={setLang}
+        theme={theme}
+        onThemeToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        onEnter={() => setView('app')}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#faf7f2] text-stone-900 dark:bg-stone-950 dark:text-stone-100">
       {/* Header */}
       <header className="sticky top-0 z-20 border-b border-stone-200 bg-[#faf7f2]/90 backdrop-blur dark:border-stone-800 dark:bg-stone-950/90">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-3">
-          <a href="#top" className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-600 text-white">
-              <Compass size={20} />
-            </span>
+          <button onClick={() => setView('home')} className="flex items-center gap-2">
+            <Logo size={36} />
             <span className="text-lg font-bold tracking-tight">
               Karnataka Yatra <span className="text-orange-600">AI</span>
             </span>
-          </a>
+          </button>
           <nav className="hidden gap-6 text-sm font-medium text-stone-600 dark:text-stone-400 md:flex">
+            <button onClick={() => setView('home')} className="flex items-center gap-1 hover:text-orange-600">
+              <House size={15} /> {t('homeNav')}
+            </button>
             <a href="#planner" className="hover:text-orange-600">{t('navPlanner')}</a>
             <a href="#destinations" className="hover:text-orange-600">{t('navDestinations')}</a>
             <a href="#how" className="hover:text-orange-600">{t('navHow')}</a>
@@ -207,47 +222,6 @@ export default function App() {
           </div>
         </div>
       </header>
-
-      {/* Hero */}
-      <section id="top" className="relative overflow-hidden">
-        <div className="pointer-events-none absolute -top-20 -left-20 h-72 w-72 rounded-full bg-orange-400/30 blur-3xl animate-float-slow" />
-        <div className="pointer-events-none absolute top-10 right-0 h-72 w-72 rounded-full bg-violet-400/30 blur-3xl animate-float-slow" />
-        <div className="relative mx-auto max-w-6xl px-4 pt-12 pb-8 sm:pt-16">
-          <p className="animate-fade-up mb-3 inline-flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1 text-xs font-bold tracking-wide text-orange-700 uppercase dark:bg-orange-900/40 dark:text-orange-300">
-            <Sparkles size={14} /> {t('heroBadge')}
-          </p>
-          <h1 className="animate-fade-up max-w-3xl text-4xl leading-tight font-extrabold tracking-tight sm:text-5xl">
-            {t('heroTitleA')}{' '}
-            <span className="bg-gradient-to-r from-orange-600 via-rose-500 to-violet-600 bg-clip-text text-transparent">
-              {t('heroTitleB')}
-            </span>
-          </h1>
-          <p className="animate-fade-up-delay mt-4 max-w-2xl text-lg text-stone-600 dark:text-stone-400">
-            {t('heroSub')}
-          </p>
-          <div className="animate-fade-up-delay mt-6 flex flex-wrap gap-6 text-sm text-stone-600 dark:text-stone-400">
-            <span className="flex items-center gap-2">
-              <MapPin size={16} className="text-orange-600" /> 16 {t('statDest')}
-            </span>
-            <span className="flex items-center gap-2">
-              <CalendarDays size={16} className="text-orange-600" /> 1–7 {t('statDays')}
-            </span>
-            <span className="flex items-center gap-2">
-              <Wallet size={16} className="text-orange-600" /> {t('statBudget')}
-            </span>
-          </div>
-        </div>
-        {/* Destination marquee */}
-        <div className="relative overflow-hidden border-y border-stone-200 py-3 dark:border-stone-800">
-          <div className="animate-marquee flex w-max gap-8 whitespace-nowrap">
-            {marqueeNames.map((name, i) => (
-              <span key={i} className="flex items-center gap-8 text-sm font-semibold text-stone-500 dark:text-stone-400">
-                {name} <Star size={12} className="text-orange-500" />
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Planner */}
       <section id="planner" className="mx-auto max-w-6xl scroll-mt-20 px-4 pt-10 pb-14">
