@@ -1,0 +1,286 @@
+import type {
+  BudgetTier,
+  Group,
+  Interest,
+  Pace,
+} from '../data/destinations';
+
+export type Lang = 'en' | 'hi' | 'kn';
+
+export const LANG_META: Record<Lang, { label: string; native: string }> = {
+  en: { label: 'English', native: 'English' },
+  hi: { label: 'Hindi', native: 'हिंदी' },
+  kn: { label: 'Kannada', native: 'ಕನ್ನಡ' },
+};
+
+type Dict = Record<string, string>;
+
+const en: Dict = {
+  navPlanner: 'Planner',
+  navDestinations: 'Destinations',
+  navHow: 'How it works',
+  planTrip: 'Plan my trip',
+  heroBadge: 'AI Travel Planner for Karnataka',
+  heroTitleA: 'Your Karnataka trip, planned around',
+  heroTitleB: 'what you love.',
+  heroSub:
+    'Pick your interests, days and budget — the planner scores 16 destinations, clusters nearby places into a sensible route, and builds a day-by-day itinerary with an honest cost estimate.',
+  statDest: 'destinations',
+  statDays: 'day trips',
+  statBudget: 'Budget to luxury',
+  plannerTitle: 'Build your itinerary',
+  plannerSub: 'Everything runs instantly in your browser — no sign-up, no waiting.',
+  loveTitle: 'What do you love?',
+  tripLength: 'Trip length',
+  budgetLabel: 'Budget',
+  paceLabel: 'Pace',
+  travellingAs: 'Travelling as',
+  generate: 'Generate my itinerary',
+  planTitle: 'Your Karnataka plan',
+  matchWith: 'match with your interests',
+  regenerate: 'Regenerate',
+  copyPlan: 'Copy plan',
+  copied: 'Copied!',
+  estTotal: 'Estimated total',
+  forTravellers: 'for traveller(s) · indicative',
+  stay: 'Stay',
+  food: 'Food',
+  transport: 'Transport',
+  activities: 'Activities',
+  tipsTitle: 'Smart tips for this route',
+  exploreTitle: 'Explore Karnataka',
+  exploreSub:
+    'Every place the planner can route you through, with honest per-day costs.',
+  all: 'All',
+  howTitle: 'How the planner thinks',
+  step1Title: '1. You tell it what you love',
+  step1Text:
+    'Interests, trip length, budget tier, pace and group size become the constraints for the plan.',
+  step2Title: '2. It scores and routes',
+  step2Text:
+    'Each destination is scored on interest match and rating, then clustered by region so the route is geographically sensible instead of zig-zagging across the state.',
+  step3Title: '3. You get a day-wise plan',
+  step3Text:
+    'Days are split across stops with morning, afternoon and evening activities, plus a cost breakdown split into stay, food, transport and activities.',
+  disclaimer:
+    'Costs are indicative estimates for planning, not live prices. Verify safari, stay and transport bookings before you travel.',
+  footer: 'built for the Travel & Tourism hackathon track.',
+  dashboardTitle: 'Trip dashboard',
+  dashboardSub: 'Tap the tabs to explore your route, budget and days.',
+  tabOverview: 'Overview',
+  tabBudget: 'Budget',
+  tabDays: 'Days',
+  routeTitle: 'Your route',
+  matchLabel: 'Interest match',
+  perPerson: 'per person',
+  recommended: 'recommended',
+  bestLabel: 'Best',
+  fromPerDay: 'from',
+  perDay: '/day',
+  morning: 'Morning',
+  afternoon: 'Afternoon',
+  evening: 'Evening',
+  dayLabel: 'Day',
+  daysUnit: 'days',
+  dayUnit: 'day',
+  routeStrip: 'Bengaluru → your stops → back',
+};
+
+const hi: Dict = {
+  navPlanner: 'योजनाकार',
+  navDestinations: 'गंतव्य',
+  navHow: 'यह कैसे काम करता है',
+  planTrip: 'मेरी यात्रा की योजना बनाएं',
+  heroBadge: 'कर्नाटक के लिए एआई यात्रा योजनाकार',
+  heroTitleA: 'आपकी कर्नाटक यात्रा, आपकी पसंद के अनुसार',
+  heroTitleB: 'नियोजित।',
+  heroSub:
+    'अपनी रुचियाँ, दिन और बजट चुनें — योजनाकार 16 गंतव्यों का मूल्यांकन करता है, नज़दीकी स्थानों को एक समझदार मार्ग में जोड़ता है, और ईमानदार लागत अनुमान के साथ दिन-प्रतिदिन की यात्रा योजना बनाता है।',
+  statDest: 'गंतव्य',
+  statDays: 'दिवसीय यात्राएँ',
+  statBudget: 'बजट से लग्जरी तक',
+  plannerTitle: 'अपनी यात्रा योजना बनाएं',
+  plannerSub: 'सब कुछ आपके ब्राउज़र में तुरंत चलता है — कोई साइन-अप नहीं, कोई इंतज़ार नहीं।',
+  loveTitle: 'आपको क्या पसंद है?',
+  tripLength: 'यात्रा की अवधि',
+  budgetLabel: 'बजट',
+  paceLabel: 'गति',
+  travellingAs: 'यात्रा समूह',
+  generate: 'मेरी यात्रा योजना बनाएं',
+  planTitle: 'आपकी कर्नाटक योजना',
+  matchWith: 'आपकी रुचियों से मेल',
+  regenerate: 'फिर से बनाएं',
+  copyPlan: 'योजना कॉपी करें',
+  copied: 'कॉपी हो गया!',
+  estTotal: 'अनुमानित कुल',
+  forTravellers: 'यात्रियों के लिए · संकेतात्मक',
+  stay: 'ठहरना',
+  food: 'भोजन',
+  transport: 'परिवहन',
+  activities: 'गतिविधियाँ',
+  tipsTitle: 'इस मार्ग के लिए स्मार्ट सुझाव',
+  exploreTitle: 'कर्नाटक का अन्वेषण करें',
+  exploreSub:
+    'हर वह स्थान जहाँ से योजनाकार आपको ले जा सकता है, ईमानदार दैनिक लागत के साथ।',
+  all: 'सभी',
+  howTitle: 'योजनाकार कैसे सोचता है',
+  step1Title: '1. आप बताते हैं कि आपको क्या पसंद है',
+  step1Text:
+    'रुचियाँ, यात्रा की अवधि, बजट श्रेणी, गति और समूह का आकार योजना की शर्तें बन जाते हैं।',
+  step2Title: '2. यह अंक देता है और मार्ग बनाता है',
+  step2Text:
+    'प्रत्येक गंतव्य को रुचि-मेल और रेटिंग के आधार पर अंक मिलते हैं, फिर क्षेत्र के अनुसार समूह बनाए जाते हैं ताकि मार्ग भौगोलिक रूप से समझदार हो, राज्य भर में टेढ़ा-मेढ़ा नहीं।',
+  step3Title: '3. आपको दिन-वार योजना मिलती है',
+  step3Text:
+    'दिन ठहरावों में बाँट दिए जाते हैं — सुबह, दोपहर और शाम की गतिविधियों के साथ, और ठहरने, भोजन, परिवहन व गतिविधियों में बँटा लागत विवरण भी मिलता है।',
+  disclaimer:
+    'लागत योजना के लिए संकेतात्मक अनुमान हैं, लाइव कीमतें नहीं। यात्रा से पहले सफारी, ठहरने और परिवहन की बुकिंग की पुष्टि करें।',
+  footer: 'ट्रैवल और टूरिज्म हैकथॉन ट्रैक के लिए निर्मित।',
+  dashboardTitle: 'यात्रा डैशबोर्ड',
+  dashboardSub: 'अपना मार्ग, बजट और दिन देखने के लिए टैब पर टैप करें।',
+  tabOverview: 'अवलोकन',
+  tabBudget: 'बजट',
+  tabDays: 'दिन',
+  routeTitle: 'आपका मार्ग',
+  matchLabel: 'रुचि मेल',
+  perPerson: 'प्रति व्यक्ति',
+  recommended: 'अनुशंसित',
+  bestLabel: 'सर्वश्रेष्ठ समय',
+  fromPerDay: 'से',
+  perDay: '/दिन',
+  morning: 'सुबह',
+  afternoon: 'दोपहर',
+  evening: 'शाम',
+  dayLabel: 'दिन',
+  daysUnit: 'दिन',
+  dayUnit: 'दिन',
+  routeStrip: 'बेंगलुरु → आपके ठहराव → वापसी',
+};
+
+const kn: Dict = {
+  navPlanner: 'ಯೋಜಕ',
+  navDestinations: 'ತಾಣಗಳು',
+  navHow: 'ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ',
+  planTrip: 'ನನ್ನ ಪ್ರವಾಸವನ್ನು ಯೋಜಿಸಿ',
+  heroBadge: 'ಕರ್ನಾಟಕಕ್ಕಾಗಿ ಎಐ ಪ್ರವಾಸ ಯೋಜಕ',
+  heroTitleA: 'ನಿಮ್ಮ ಕರ್ನಾಟಕ ಪ್ರವಾಸ, ನಿಮಗೆ ಇಷ್ಟವಾದದ್ದರ ಸುತ್ತ',
+  heroTitleB: 'ಯೋಜಿಸಲಾಗಿದೆ.',
+  heroSub:
+    'ನಿಮ್ಮ ಆಸಕ್ತಿಗಳು, ದಿನಗಳು ಮತ್ತು ಬಜೆಟ್ ಆಯ್ಕೆಮಾಡಿ — ಯೋಜಕ 16 ತಾಣಗಳನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡಿ, ಹತ್ತಿರದ ಸ್ಥಳಗಳನ್ನು ಸಮಂಜಸವಾದ ಮಾರ್ಗದಲ್ಲಿ ಜೋಡಿಸಿ, ಪ್ರಾಮಾಣಿಕ ವೆಚ್ಚದ ಅಂದಾಜಿನೊಂದಿಗೆ ದಿನವಾರು ಯೋಜನೆಯನ್ನು ನೀಡುತ್ತದೆ.',
+  statDest: 'ತಾಣಗಳು',
+  statDays: 'ದಿನದ ಪ್ರವಾಸಗಳು',
+  statBudget: 'ಬಜೆಟ್‌ನಿಂದ ಐಷಾರಾಮಿವರೆಗೆ',
+  plannerTitle: 'ನಿಮ್ಮ ಪ್ರವಾಸ ಯೋಜನೆಯನ್ನು ರಚಿಸಿ',
+  plannerSub: 'ಎಲ್ಲವೂ ನಿಮ್ಮ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ತಕ್ಷಣ ಚಲಿಸುತ್ತದೆ — ಯಾವುದೇ ಸೈನ್-ಅಪ್ ಇಲ್ಲ, ಕಾಯುವಿಕೆ ಇಲ್ಲ.',
+  loveTitle: 'ನಿಮಗೆ ಏನು ಇಷ್ಟ?',
+  tripLength: 'ಪ್ರವಾಸದ ಅವಧಿ',
+  budgetLabel: 'ಬಜೆಟ್',
+  paceLabel: 'ವೇಗ',
+  travellingAs: 'ಪ್ರಯಾಣದ ಗುಂಪು',
+  generate: 'ನನ್ನ ಪ್ರವಾಸ ಯೋಜನೆಯನ್ನು ರಚಿಸಿ',
+  planTitle: 'ನಿಮ್ಮ ಕರ್ನಾಟಕ ಯೋಜನೆ',
+  matchWith: 'ನಿಮ್ಮ ಆಸಕ್ತಿಗಳಿಗೆ ಹೊಂದಾಣಿಕೆ',
+  regenerate: 'ಮತ್ತೆ ರಚಿಸಿ',
+  copyPlan: 'ಯೋಜನೆಯನ್ನು ನಕಲಿಸಿ',
+  copied: 'ನಕಲಿಸಲಾಗಿದೆ!',
+  estTotal: 'ಅಂದಾಜು ಒಟ್ಟು',
+  forTravellers: 'ಪ್ರಯಾಣಿಕರಿಗೆ · ಸೂಚಕ',
+  stay: 'ವಸತಿ',
+  food: 'ಆಹಾರ',
+  transport: 'ಸಾರಿಗೆ',
+  activities: 'ಚಟುವಟಿಕೆಗಳು',
+  tipsTitle: 'ಈ ಮಾರ್ಗಕ್ಕಾಗಿ ಸ್ಮಾರ್ಟ್ ಸಲಹೆಗಳು',
+  exploreTitle: 'ಕರ್ನಾಟಕವನ್ನು ಅನ್ವೇಷಿಸಿ',
+  exploreSub:
+    'ಯೋಜಕ ನಿಮ್ಮನ್ನು ಕರೆದೊಯ್ಯಬಹುದಾದ ಪ್ರತಿಯೊಂದು ಸ್ಥಳ, ಪ್ರಾಮಾಣಿಕ ದೈನಂದಿನ ವೆಚ್ಚದೊಂದಿಗೆ.',
+  all: 'ಎಲ್ಲಾ',
+  howTitle: 'ಯೋಜಕ ಹೇಗೆ ಯೋಚಿಸುತ್ತದೆ',
+  step1Title: '1. ನಿಮಗೆ ಏನು ಇಷ್ಟ ಎಂದು ನೀವು ಹೇಳಿ',
+  step1Text:
+    'ಆಸಕ್ತಿಗಳು, ಪ್ರವಾಸದ ಅವಧಿ, ಬಜೆಟ್ ಶ್ರೇಣಿ, ವೇಗ ಮತ್ತು ಗುಂಪಿನ ಗಾತ್ರ ಯೋಜನೆಯ ನಿರ್ಬಂಧಗಳಾಗುತ್ತವೆ.',
+  step2Title: '2. ಇದು ಅಂಕ ನೀಡಿ ಮಾರ್ಗ ರಚಿಸುತ್ತದೆ',
+  step2Text:
+    'ಪ್ರತಿಯೊಂದು ತಾಣಕ್ಕೂ ಆಸಕ್ತಿ ಹೊಂದಾಣಿಕೆ ಮತ್ತು ರೇಟಿಂಗ್ ಆಧಾರದ ಮೇಲೆ ಅಂಕ ನೀಡಲಾಗುತ್ತದೆ, ನಂತರ ಪ್ರದೇಶವಾರು ಗುಂಪು ಮಾಡಲಾಗುತ್ತದೆ — ಆದ್ದರಿಂದ ಮಾರ್ಗವು ಭೌಗೋಳಿಕವಾಗಿ ಸಮಂಜಸವಾಗಿರುತ್ತದೆ, ರಾಜ್ಯದಾದ್ಯಂತ ಅಡ್ಡಾದಿಡ್ಡಿಯಾಗಿರುವುದಿಲ್ಲ.',
+  step3Title: '3. ನಿಮಗೆ ದಿನವಾರು ಯೋಜನೆ ಸಿಗುತ್ತದೆ',
+  step3Text:
+    'ದಿನಗಳನ್ನು ತಾಣಗಳ ನಡುವೆ ಹಂಚಲಾಗುತ್ತದೆ — ಬೆಳಿಗ್ಗೆ, ಮಧ್ಯಾಹ್ನ ಮತ್ತು ಸಂಜೆ ಚಟುವಟಿಕೆಗಳೊಂದಿಗೆ, ಜೊತೆಗೆ ವಸತಿ, ಆಹಾರ, ಸಾರಿಗೆ ಮತ್ತು ಚಟುವಟಿಕೆಗಳಾಗಿ ವಿಂಗಡಿಸಲಾದ ವೆಚ್ಚದ ವಿವರ.',
+  disclaimer:
+    'ವೆಚ್ಚಗಳು ಯೋಜನೆಗಾಗಿ ಸೂಚಕ ಅಂದಾಜುಗಳು, ಲೈವ್ ಬೆಲೆಗಳಲ್ಲ. ಪ್ರಯಾಣಿಸುವ ಮೊದಲು ಸಫಾರಿ, ವಸತಿ ಮತ್ತು ಸಾರಿಗೆ ಬುಕಿಂಗ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.',
+  footer: 'ಟ್ರಾವೆಲ್ ಮತ್ತು ಟೂರಿಸಂ ಹ್ಯಾಕಥಾನ್ ಟ್ರ್ಯಾಕ್‌ಗಾಗಿ ನಿರ್ಮಿಸಲಾಗಿದೆ.',
+  dashboardTitle: 'ಪ್ರವಾಸ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
+  dashboardSub: 'ನಿಮ್ಮ ಮಾರ್ಗ, ಬಜೆಟ್ ಮತ್ತು ದಿನಗಳನ್ನು ನೋಡಲು ಟ್ಯಾಬ್‌ಗಳನ್ನು ಒತ್ತಿ.',
+  tabOverview: 'ಅವಲೋಕನ',
+  tabBudget: 'ಬಜೆಟ್',
+  tabDays: 'ದಿನಗಳು',
+  routeTitle: 'ನಿಮ್ಮ ಮಾರ್ಗ',
+  matchLabel: 'ಆಸಕ್ತಿ ಹೊಂದಾಣಿಕೆ',
+  perPerson: 'ಪ್ರತಿ ವ್ಯಕ್ತಿಗೆ',
+  recommended: 'ಶಿಫಾರಸು',
+  bestLabel: 'ಉತ್ತಮ ಸಮಯ',
+  fromPerDay: 'ಇಂದ',
+  perDay: '/ದಿನ',
+  morning: 'ಬೆಳಿಗ್ಗೆ',
+  afternoon: 'ಮಧ್ಯಾಹ್ನ',
+  evening: 'ಸಂಜೆ',
+  dayLabel: 'ದಿನ',
+  daysUnit: 'ದಿನಗಳು',
+  dayUnit: 'ದಿನ',
+  routeStrip: 'ಬೆಂಗಳೂರು → ನಿಮ್ಮ ತಾಣಗಳು → ವಾಪಸ್',
+};
+
+const DICTS: Record<Lang, Dict> = { en, hi, kn };
+
+export function tr(lang: Lang, key: string): string {
+  return DICTS[lang][key] ?? DICTS.en[key] ?? key;
+}
+
+export const INTEREST_LABELS_I18N: Record<Lang, Record<Interest, string>> = {
+  en: {
+    heritage: 'Heritage',
+    nature: 'Nature',
+    beaches: 'Beaches',
+    adventure: 'Adventure',
+    wildlife: 'Wildlife',
+    food: 'Food',
+    spiritual: 'Spiritual',
+    city: 'City Life',
+  },
+  hi: {
+    heritage: 'विरासत',
+    nature: 'प्रकृति',
+    beaches: 'समुद्र तट',
+    adventure: 'रोमांच',
+    wildlife: 'वन्यजीव',
+    food: 'भोजन',
+    spiritual: 'आध्यात्मिक',
+    city: 'शहरी जीवन',
+  },
+  kn: {
+    heritage: 'ಪರಂಪರೆ',
+    nature: 'ಪ್ರಕೃತಿ',
+    beaches: 'ಕಡಲತೀರಗಳು',
+    adventure: 'ಸಾಹಸ',
+    wildlife: 'ವನ್ಯಜೀವಿ',
+    food: 'ಆಹಾರ',
+    spiritual: 'ಆಧ್ಯಾತ್ಮಿಕ',
+    city: 'ನಗರ ಜೀವನ',
+  },
+};
+
+export const BUDGET_LABELS_I18N: Record<Lang, Record<BudgetTier, string>> = {
+  en: { budget: 'Budget', moderate: 'Moderate', luxury: 'Luxury' },
+  hi: { budget: 'बजट', moderate: 'मध्यम', luxury: 'विलासी' },
+  kn: { budget: 'ಬಜೆಟ್', moderate: 'ಮಧ್ಯಮ', luxury: 'ಐಷಾರಾಮಿ' },
+};
+
+export const PACE_LABELS_I18N: Record<Lang, Record<Pace, string>> = {
+  en: { relaxed: 'Relaxed', balanced: 'Balanced', packed: 'Packed' },
+  hi: { relaxed: 'आरामदायक', balanced: 'संतुलित', packed: 'भरपूर' },
+  kn: { relaxed: 'ವಿಶ್ರಾಂತ', balanced: 'ಸಮತೋಲಿತ', packed: 'ತುಂಬಿದ' },
+};
+
+export const GROUP_LABELS_I18N: Record<Lang, Record<Group, string>> = {
+  en: { solo: 'Solo', couple: 'Couple', family: 'Family', friends: 'Friends' },
+  hi: { solo: 'अकेले', couple: 'जोड़ा', family: 'परिवार', friends: 'दोस्त' },
+  kn: { solo: 'ಒಂಟಿಯಾಗಿ', couple: 'ಜೋಡಿ', family: 'ಕುಟುಂಬ', friends: 'ಗೆಳೆಯರು' },
+};
