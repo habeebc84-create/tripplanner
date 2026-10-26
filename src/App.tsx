@@ -43,6 +43,7 @@ import { formatINR, generateItinerary } from './lib/planner';
 import { mapsDirectionsUrl } from './lib/maps';
 import Logo from './components/Logo';
 import PlaceDetail from './components/PlaceDetail';
+import BengaluruSection from './components/BengaluruSection';
 import HomePage from './pages/Home';
 import {
   BUDGET_LABELS_I18N,
@@ -278,6 +279,7 @@ export default function App() {
             </button>
             <a href="#planner" className="hover:text-orange-600">{t('navPlanner')}</a>
             <a href="#destinations" className="hover:text-orange-600">{t('navDestinations')}</a>
+            <a href="#bengaluru" className="hover:text-orange-600">{t('navBengaluru')}</a>
             <a href="#how" className="hover:text-orange-600">{t('navHow')}</a>
             <a href="#about" className="hover:text-orange-600">{t('navAbout')}</a>
           </nav>
@@ -811,6 +813,15 @@ export default function App() {
           ))}
         </div>
       </section>
+
+      {/* Bengaluru deep dive */}
+      <BengaluruSection
+        lang={lang}
+        onPlanBengaluruDay={() => {
+          const bengaluru = DESTINATIONS.find((d) => d.id === 'bengaluru');
+          if (bengaluru) planAround(bengaluru);
+        }}
+      />
 
       {/* How it works */}
       <section id="how" className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16">

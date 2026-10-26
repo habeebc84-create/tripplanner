@@ -41,6 +41,19 @@ Built for the **Travel & Tourism** hackathon track.
   that place into the plan, so it can never be silently dropped.
 - **Honest costs** — day costs are derived from the same breakdown as the
   dashboard total, so they reconcile (within rounding) instead of disagreeing.
+- **Bengaluru deep dive** — 31 famous city places (Lalbagh, Cubbon Park,
+  Bangalore Palace, Vidhana Soudha, ISKCON, Bannerghatta, Bull Temple,
+  Madivala Lake, Sankey Tank, Hebbal Lake, Turahalli Forest, Big Banyan Tree,
+  Gavi Gangadhareshwara, Banashankari, Government Museum, HAL Aerospace
+  Museum, Chitrakala Parishath, Rangoli Metro Art Center, Brigade Road,
+  MG Road, Church Street, Phoenix Marketcity, Orion Mall, Innovative Film
+  City, Snow City, Fun World, Chinnaswamy Stadium and more), filterable by
+  category, with a live Google map view.
+- **How to get there, honestly** — each place names its metro station or bus
+  corridor where that is well established, and links to live Google Maps
+  transit directions from Majestic, which show the real, current bus numbers
+  and train times. Printed bus numbers go stale fast, so the app never prints
+  ones it cannot stand behind.
 
 ## Scale: built for 10 lakh searches a day
 

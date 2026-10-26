@@ -9,5 +9,9 @@ export const mapsSearchUrl = (place: string) =>
 export const mapsDirectionsUrl = (from: string, to: string) =>
   `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(from)}&destination=${encodeURIComponent(to + ', Karnataka')}`;
 
+/** Live public-transport directions: shows real bus numbers and train times. */
+export const mapsDirectionsTransitUrl = (from: string, to: string) =>
+  `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(from)}&destination=${encodeURIComponent(to)}&travelmode=transit`;
+
 export const hotelsSearchUrl = (place: string) =>
   `https://www.google.com/travel/hotels?q=${encodeURIComponent('hotels in ' + place + ', Karnataka')}`;
