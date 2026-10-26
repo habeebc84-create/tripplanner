@@ -52,8 +52,39 @@ export default function BengaluruSection({
         ))}
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-5">
-        {/* Map view + selected place */}
+      {/* Photo strip of famous places */}
+      <div className="mt-6">
+        <p className="text-sm font-semibold">{t('photosLabel')}</p>
+        <div className="mt-3 flex gap-3 overflow-x-auto pb-2">
+          {BENGALURU_PLACES.filter((p) => p.image).map((p) => (
+            <button
+              key={p.id}
+              onClick={() => setSelectedId(p.id)}
+              className={`group w-48 shrink-0 overflow-hidden rounded-2xl border text-left shadow-sm transition hover:-translate-y-0.5 ${
+                p.id === selectedId
+                  ? 'border-orange-500 ring-2 ring-orange-500/40'
+                  : 'border-stone-200 dark:border-stone-800'
+              }`}
+            >
+              <img
+                src={p.image}
+                alt={p.name}
+                loading="lazy"
+                className="h-28 w-full object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
+              <span className="block bg-white px-3 py-2 text-xs font-bold dark:bg-stone-900">
+                {p.name}
+              </span>
+            </button>
+          ))}
+        </div>
+        <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">{t('photoCredit')}</p>
+      </div>
+
+      <div className="mt-6 grid gap-6 lg:grid-cols-5">        {/* Map view + selected place */}
         <div className="lg:col-span-2">
           <div className="overflow-hidden rounded-3xl border border-stone-200 shadow-sm dark:border-stone-800">
             <iframe
@@ -120,6 +151,17 @@ export default function BengaluruSection({
                   : 'border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900'
               }`}
             >
+              {p.image && (
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  loading="lazy"
+                  className="mb-3 h-36 w-full rounded-2xl object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                  }}
+                />
+              )}
               <p className="text-xs font-bold tracking-wide text-orange-600 uppercase">
                 {t(`cat_${p.category}`)}
               </p>

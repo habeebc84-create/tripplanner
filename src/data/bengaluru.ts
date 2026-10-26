@@ -22,6 +22,8 @@ export interface BengaluruPlace {
   entryFee: string;
   howToGo: string;
   highlights: string[];
+  /** Verified real photo URL (open web). Absent when no reliable photo was found. */
+  image?: string;
 }
 
 export const BENGALURU_PLACES: BengaluruPlace[] = [
@@ -37,6 +39,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     entryFee: 'Small fee (indicative)',
     howToGo: 'Lalbagh metro station (Green Line), then a short walk. BMTC buses from Majestic towards Basavanagudi.',
     highlights: ['Glass House flower shows', 'Lotus pond and lake', 'Rare trees and bonsai garden'],
+    image: 'https://d2rdhxfof4qmbb.cloudfront.net/wp-content/uploads/2024/01/COVER-5.jpg',
   },
   {
     id: 'cubbon-park',
@@ -49,6 +52,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     entryFee: 'Free',
     howToGo: 'Cubbon Park metro station (Purple Line) at the park edge.',
     highlights: ['Morning jogs and cycling', 'State Central Library', 'Toy train for children'],
+    image: 'https://www.karnatakatourism.org/wp-content/uploads/2021/09/Cubbon-Park.jpg',
   },
   {
     id: 'bangalore-palace',
@@ -61,6 +65,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     entryFee: 'Paid entry (indicative)',
     howToGo: 'BMTC buses from Majestic towards Palace Grounds / Mekhri Circle. Autos from anywhere central.',
     highlights: ['Durbar Hall and wooden carvings', 'Palace grounds and gardens', 'Audio guide tour'],
+    image: 'https://pub-0f3ca40c378b41b2b74bb464f98f62e2.r2.dev/locations/bangalore-palace/1787808805751-27811341995_6e10abef04_k.jpg',
   },
   {
     id: 'vidhana-soudha',
@@ -73,6 +78,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     entryFee: 'View from outside',
     howToGo: 'Dr. B. R. Ambedkar Station, Vidhana Soudha (Purple Line) right outside.',
     highlights: ['Evening illumination', 'Cubbon Park next door', 'High Court and Attara Kacheri nearby'],
+    image: 'https://officechai.com/wp-content/uploads/2017/04/Vidhana_Souda__Bangalore-1024x638.jpg',
   },
   {
     id: 'iskcon',
@@ -85,6 +91,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     entryFee: 'Free (donations welcome)',
     howToGo: 'BMTC buses from Majestic towards Rajajinagar. Autos from anywhere in the city.',
     highlights: ['Evening aarti and kirtan', 'Shrine complex and museum', 'Prasadam dining hall'],
+    image: 'https://cdn.abhibus.com/2024/06/Iskcon-Temple-Bangalore-696x385.jpg',
   },
   {
     id: 'bannerghatta',
@@ -97,6 +104,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     entryFee: 'Paid entry (indicative)',
     howToGo: 'BMTC buses from Majestic / Shivajinagar along Bannerghatta Road. Book safari slots ahead.',
     highlights: ['Lion and tiger safari', 'Butterfly park', 'Zoo and rescue centre'],
+    image: 'https://www.citybit.in/wp-content/uploads/2024/05/Bannerghatta-Biological-Park-safari-1024x576.jpg',
   },
   {
     id: 'bull-temple',
@@ -109,6 +117,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     entryFee: 'Free',
     howToGo: 'BMTC buses from Majestic towards Basavanagudi (Gandhi Bazaar). Walk from Bugle Rock Park.',
     highlights: ['Monolithic Nandi statue', 'Bugle Rock Park next door', 'Kadalekai Parishe groundnut fair (Nov–Dec)'],
+    image: 'https://publictv.in/wp-content/uploads/2020/08/bull-temple-basavanagudi-bengluru.jpg',
   },
   {
     id: 'tipu-palace',
@@ -182,6 +191,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     entryFee: 'Free',
     howToGo: 'Mysuru Road buses from Majestic towards Ramanagara; alight at the Dodda Alada Mara stop.',
     highlights: ['Three-acre canopy', 'Picnic lawns', 'Photography'],
+    image: 'https://www.explorebees.com/uploads/Dodda%20Alada%20Mara%20or%20Big%20Banyan%20Tree.jpg',
   },
   {
     id: 'ulsoor-lake',
@@ -305,6 +315,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     entryFee: 'Free to stroll',
     howToGo: 'Walk from MG Road metro station (Purple Line).',
     highlights: ['Shopping and bookshops', 'Cafés and pubs', 'Street food'],
+    image: 'https://www.olafarge.fr/wp-content/uploads/2025/04/9003-Bangalore-Brigade-Rd-T.jpg',
   },
   {
     id: 'mg-road',
@@ -317,6 +328,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     entryFee: 'Free to stroll',
     howToGo: 'MG Road metro station (Purple Line) right on the boulevard.',
     highlights: ['Boulevard shopping', 'Theatres and restaurants', 'Metro art centre'],
+    image: 'https://sowers.in/wp-content/uploads/2017/10/MG-Road-Bangalore.jpg',
   },
   {
     id: 'church-street',

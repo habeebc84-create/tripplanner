@@ -71,6 +71,9 @@ const en: Dict = {
   mapNote:
     'The map loads live from Google. Bus numbers and train times change — open directions for the live numbers.',
   planBengaluruDay: 'Plan a day in Bengaluru',
+  palaceCaption: 'Bangalore Palace — the city’s most photographed landmark',
+  photosLabel: 'Famous places in photos',
+  photoCredit: 'Photos from the open web; credit belongs to their publishers.',
   dayCost: 'Day cost',
   stayIn: 'Stay in',
   heroBadge: 'AI Travel Planner for Karnataka',
@@ -195,6 +198,9 @@ const hi: Dict = {
   mapNote:
     'मानचित्र Google से लाइव लोड होता है। बस नंबर और ट्रेन का समय बदलता रहता है — लाइव नंबरों के लिए दिशा-निर्देश खोलें।',
   planBengaluruDay: 'बेंगलुरु में एक दिन की योजना बनाएँ',
+  palaceCaption: 'बैंगलोर पैलेस — शहर का सबसे अधिक फोटो खींचा गया स्थल',
+  photosLabel: 'तस्वीरों में प्रसिद्ध स्थान',
+  photoCredit: 'तस्वीरें खुले वेब से हैं; श्रेय उनके प्रकाशकों को जाता है।',
   dayCost: 'दिन की लागत',
   stayIn: 'ठहराव',
   heroBadge: 'कर्नाटक के लिए एआई यात्रा योजनाकार',
@@ -319,6 +325,9 @@ const kn: Dict = {
   mapNote:
     'ನಕ್ಷೆ Google ನಿಂದ ಲೈವ್ ಲೋಡ್ ಆಗುತ್ತದೆ. ಬಸ್ ಸಂಖ್ಯೆಗಳು ಮತ್ತು ರೈಲು ಸಮಯ ಬದಲಾಗುತ್ತದೆ — ಲೈವ್ ಸಂಖ್ಯೆಗಳಿಗಾಗಿ ನಿರ್ದೇಶನಗಳನ್ನು ತೆರೆಯಿರಿ.',
   planBengaluruDay: 'ಬೆಂಗಳೂರಿನಲ್ಲಿ ಒಂದು ದಿನ ಯೋಜಿಸಿ',
+  palaceCaption: 'ಬೆಂಗಳೂರು ಅರಮನೆ — ನಗರದ ಅತ್ಯಂತ ಹೆಚ್ಚು ಛಾಯಾಚಿತ್ರಗೊಂಡ ಹೆಗ್ಗುರುತು',
+  photosLabel: 'ಫೋಟೋಗಳಲ್ಲಿ ಪ್ರಸಿದ್ಧ ಸ್ಥಳಗಳು',
+  photoCredit: 'ಫೋಟೋಗಳು ಮುಕ್ತ ವೆಬ್‌ನಿಂದ; ಕ್ರೆಡಿಟ್ ಅವುಗಳ ಪ್ರಕಾಶಕರಿಗೆ ಸೇರಿದೆ.',
   dayCost: 'ದಿನದ ವೆಚ್ಚ',
   stayIn: 'ವಸತಿ',
   heroBadge: 'ಕರ್ನಾಟಕಕ್ಕಾಗಿ ಎಐ ಪ್ರವಾಸ ಯೋಜಕ',

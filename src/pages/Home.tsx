@@ -61,7 +61,20 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
         <div className="pointer-events-none absolute -top-24 left-1/4 h-80 w-80 rounded-full bg-orange-400/30 blur-3xl animate-float-slow" />
         <div className="pointer-events-none absolute top-20 right-0 h-80 w-80 rounded-full bg-violet-400/30 blur-3xl animate-float-slow" />
         <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 pt-10 pb-12 text-center sm:pt-14">
-          <span className="animate-fade-up"><Logo size={88} /></span>
+          <div className="animate-fade-up w-full max-w-4xl overflow-hidden rounded-3xl bg-gradient-to-br from-orange-500 via-rose-500 to-violet-600 shadow-xl">
+            <img
+              src="https://pub-0f3ca40c378b41b2b74bb464f98f62e2.r2.dev/locations/bangalore-palace/1787808805751-27811341995_6e10abef04_k.jpg"
+              alt="Bangalore Palace"
+              className="h-64 w-full object-cover sm:h-96"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
+            />
+          </div>
+          <p className="animate-fade-up mt-2 text-xs font-semibold text-stone-500 dark:text-stone-400">
+            {t('palaceCaption')}
+          </p>
+          <span className="animate-fade-up mt-6"><Logo size={88} /></span>
           <p className="animate-fade-up mt-5 inline-flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1 text-xs font-bold tracking-wide text-orange-700 uppercase dark:bg-orange-900/40 dark:text-orange-300">
             <Sparkles size={14} /> {t('heroBadge')}
           </p>

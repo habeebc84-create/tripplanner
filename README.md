@@ -54,6 +54,12 @@ Built for the **Travel & Tourism** hackathon track.
   transit directions from Majestic, which show the real, current bus numbers
   and train times. Printed bus numbers go stale fast, so the app never prints
   ones it cannot stand behind.
+- **Real photos** — the Home hero opens with a Bangalore Palace photo, and
+  the Bengaluru section has a photo strip plus card photos for 10 famous
+  places (Palace, Lalbagh, Cubbon Park, Vidhana Soudha, ISKCON, Bannerghatta,
+  Bull Temple, MG Road, Brigade Road, Big Banyan Tree). Every URL was
+  checked to return a real image before shipping, and any photo that fails
+  to load hides itself instead of showing a broken frame.
 
 ## Scale: built for 10 lakh searches a day
 
