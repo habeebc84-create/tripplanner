@@ -108,9 +108,20 @@ export default function BengaluruPlaceDetail({
           <div>
             <h3 className="text-lg font-bold">Bus &amp; train</h3>
             <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">
-              Live bus numbers and train times change often, so they are not printed here — tap
-              below for live directions from the city&apos;s two main arrival points.
+              Bus numbers below were verified from public timetables and guides in October 2026
+              and can change — tap below for live directions from the city&apos;s two main arrival
+              points.
             </p>
+            {place.bus && (
+              <p className="mt-3 rounded-2xl bg-orange-50 p-4 text-sm text-stone-700 dark:bg-orange-900/20 dark:text-stone-200">
+                <b>BMTC buses from Kempegowda Bus Station (Majestic):</b> {place.bus}
+              </p>
+            )}
+            {place.alert && (
+              <p className="mt-3 rounded-2xl bg-amber-50 p-4 text-sm font-semibold text-amber-800 dark:bg-amber-900/20 dark:text-amber-200">
+                {place.alert}
+              </p>
+            )}
             <div className="mt-3 flex flex-wrap gap-2">
               <a
                 href={mapsDirectionsTransitUrl('Kempegowda Bus Station, Bengaluru', destination)}

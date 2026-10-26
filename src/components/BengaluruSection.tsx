@@ -111,6 +111,11 @@ export default function BengaluruSection({
             <p className="mt-3 text-sm text-stone-600 dark:text-stone-300">
               <b>{t('howToGoTitle')}:</b> {selected.howToGo}
             </p>
+            {selected.bus && (
+              <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">
+                <b>BMTC from Majestic:</b> {selected.bus}
+              </p>
+            )}
             <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">
               <b>{t('bestLabel')}:</b> {selected.bestTime} · <b>{t('entryLabel')}:</b> {selected.entryFee}
             </p>

@@ -134,6 +134,27 @@ export default function PlaceDetail({
                 </span>
               </li>
             </ul>
+            {place.transportNumbers && (
+              <div className="mt-3 rounded-2xl bg-orange-50 p-4 dark:bg-orange-900/20">
+                <p className="text-sm font-bold">Bus &amp; train numbers from Bengaluru</p>
+                {place.transportNumbers.bus && (
+                  <p className="mt-2 flex gap-2 text-sm text-stone-600 dark:text-stone-300">
+                    <Bus size={15} className="mt-0.5 shrink-0 text-orange-600" />
+                    <span><b>Bus:</b> {place.transportNumbers.bus}</span>
+                  </p>
+                )}
+                {place.transportNumbers.train && (
+                  <p className="mt-2 flex gap-2 text-sm text-stone-600 dark:text-stone-300">
+                    <Train size={15} className="mt-0.5 shrink-0 text-sky-600" />
+                    <span><b>Train:</b> {place.transportNumbers.train}</span>
+                  </p>
+                )}
+                <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">
+                  Numbers and timings change — verify on IRCTC or ksrtc.in before travel; the live
+                  links above show current options.
+                </p>
+              </div>
+            )}
             <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">{t('travelNote')}</p>
           </div>
 

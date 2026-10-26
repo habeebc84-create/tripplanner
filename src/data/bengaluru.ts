@@ -21,6 +21,10 @@ export interface BengaluruPlace {
   bestTime: string;
   entryFee: string;
   howToGo: string;
+  /** Verified BMTC bus numbers from Kempegowda Bus Station (Majestic). Absent where no Majestic-origin number could be verified. */
+  bus?: string;
+  /** Caution shown in the detail sheet (e.g. a reported closure). */
+  alert?: string;
   highlights: string[];
   /** Verified real photo URL (open web). Absent when no reliable photo was found. */
   image?: string;
@@ -38,6 +42,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Early morning, Nov–Feb',
     entryFee: 'Small fee (indicative)',
     howToGo: 'Lalbagh metro station (Green Line), then a short walk. BMTC buses from Majestic towards Basavanagudi.',
+    bus: '2, 12, 18, 25A, 25B, 25E, 215H to Lalbagh Main or West Gate',
     highlights: ['Glass House flower shows', 'Lotus pond and lake', 'Rare trees and bonsai garden'],
     image: 'https://d2rdhxfof4qmbb.cloudfront.net/wp-content/uploads/2024/01/COVER-5.jpg',
   },
@@ -64,6 +69,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Morning, weekdays are quieter',
     entryFee: 'Paid entry (indicative)',
     howToGo: 'BMTC buses from Majestic towards Palace Grounds / Mekhri Circle. Autos from anywhere central.',
+    bus: '402, 402A, 279E, 287L, 288G, 288H, 277 via Palace Guttahalli or Palace Grounds',
     highlights: ['Durbar Hall and wooden carvings', 'Palace grounds and gardens', 'Audio guide tour'],
     image: 'https://pub-0f3ca40c378b41b2b74bb464f98f62e2.r2.dev/locations/bangalore-palace/1787808805751-27811341995_6e10abef04_k.jpg',
   },
@@ -90,6 +96,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Evening aarti',
     entryFee: 'Free (donations welcome)',
     howToGo: 'BMTC buses from Majestic towards Rajajinagar. Autos from anywhere in the city.',
+    bus: '78E, 275E, 78A to the ISKCON stop',
     highlights: ['Evening aarti and kirtan', 'Shrine complex and museum', 'Prasadam dining hall'],
     image: 'https://cdn.abhibus.com/2024/06/Iskcon-Temple-Bangalore-696x385.jpg',
   },
@@ -103,6 +110,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Morning safari, Nov–Mar',
     entryFee: 'Paid entry (indicative)',
     howToGo: 'BMTC buses from Majestic / Shivajinagar along Bannerghatta Road. Book safari slots ahead.',
+    bus: '365, J365, V365 from Majestic to Bannerghatta National Park',
     highlights: ['Lion and tiger safari', 'Butterfly park', 'Zoo and rescue centre'],
     image: 'https://www.citybit.in/wp-content/uploads/2024/05/Bannerghatta-Biological-Park-safari-1024x576.jpg',
   },
@@ -116,6 +124,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Morning or evening',
     entryFee: 'Free',
     howToGo: 'BMTC buses from Majestic towards Basavanagudi (Gandhi Bazaar). Walk from Bugle Rock Park.',
+    bus: '36, 43, 45G, 215C from Majestic',
     highlights: ['Monolithic Nandi statue', 'Bugle Rock Park next door', 'Kadalekai Parishe groundnut fair (Nov–Dec)'],
     image: 'https://publictv.in/wp-content/uploads/2020/08/bull-temple-basavanagudi-bengluru.jpg',
   },
@@ -129,6 +138,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Morning',
     entryFee: 'Small fee (indicative)',
     howToGo: 'BMTC buses to KR Market, then a short walk into the old city lanes.',
+    bus: '15-E, 15-G, 210-A, 210-B, 210-E, 210-J, 210-KA stop near KR Market',
     highlights: ['Teak pillars and frescoes', 'Museum on Tipu Sultan', 'Bangalore Fort ruins nearby'],
   },
   // Parks & nature
@@ -142,6 +152,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Sunrise or sunset',
     entryFee: 'Free',
     howToGo: 'BMTC buses towards BTM Layout from Majestic / Shivajinagar.',
+    bus: '25 (BTM Layout to Majestic)',
     highlights: ['Lakeside walking track', 'Birdwatching', 'Sunset views'],
   },
   {
@@ -154,6 +165,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Early morning',
     entryFee: 'Free',
     howToGo: 'BMTC buses towards Sadashivanagar / Malleshwaram from Majestic.',
+    bus: '104 (Sadashivanagar to Kempegowda Bus Station)',
     highlights: ['Lakeside walk', 'Birdlife', 'Quiet picnic lawns'],
   },
   {
@@ -166,6 +178,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Winter mornings for birds',
     entryFee: 'Free',
     howToGo: 'BMTC buses towards Hebbal from Majestic. Autos from Hebbal junction.',
+    bus: '279E, 402, 402A, 288G to Hebbal',
     highlights: ['Migratory birds in winter', 'Lakeside promenade', 'Photography'],
   },
   {
@@ -190,6 +203,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Morning',
     entryFee: 'Free',
     howToGo: 'Mysuru Road buses from Majestic towards Ramanagara; alight at the Dodda Alada Mara stop.',
+    bus: '227, 227P towards Ramohalli and Hunnigere',
     highlights: ['Three-acre canopy', 'Picnic lawns', 'Photography'],
     image: 'https://www.explorebees.com/uploads/Dodda%20Alada%20Mara%20or%20Big%20Banyan%20Tree.jpg',
   },
@@ -203,6 +217,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Evening boating',
     entryFee: 'Free (boating paid)',
     howToGo: 'BMTC buses from Majestic / Shivajinagar towards Ulsoor.',
+    bus: '131, 131D, 320B, 315Q, 380M, 317L, 315W, 138D to Halasuru and Ulsoor',
     highlights: ['Boating', 'Lakeside walk', 'Island views'],
   },
   // Temples & religious
@@ -216,6 +231,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Makara Sankranti (Jan)',
     entryFee: 'Free',
     howToGo: 'BMTC buses from Majestic towards Gavipuram / Basavanagudi.',
+    bus: '35, 36 from Majestic',
     highlights: ['Rock-cut cave shrine', 'Sankranti sun-ray phenomenon', 'Monolithic stone discs'],
   },
   {
@@ -228,6 +244,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Tuesday / Friday mornings',
     entryFee: 'Free',
     howToGo: 'Banashankari metro station (Green Line), then a short walk.',
+    bus: '12, 12E, 43 to Banashankari',
     highlights: ['Amma shrine', 'Festival crowds', 'Temple tank'],
   },
   {
@@ -265,6 +282,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Morning',
     entryFee: 'Small fee (indicative)',
     howToGo: 'BMTC buses along Old Airport Road from Majestic / Shivajinagar.',
+    bus: '333J, J13 from Majestic to HAL Airport',
     highlights: ['Real aircraft on display', 'Flight simulator', 'Engine and rocket hall'],
   },
   {
@@ -314,6 +332,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Evening',
     entryFee: 'Free to stroll',
     howToGo: 'Walk from MG Road metro station (Purple Line).',
+    bus: '131, 131D, 320B, 315Q, 380M, 138D via Brigade Road Junction',
     highlights: ['Shopping and bookshops', 'Cafés and pubs', 'Street food'],
     image: 'https://www.olafarge.fr/wp-content/uploads/2025/04/9003-Bangalore-Brigade-Rd-T.jpg',
   },
@@ -327,6 +346,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Evening',
     entryFee: 'Free to stroll',
     howToGo: 'MG Road metro station (Purple Line) right on the boulevard.',
+    bus: '131, 131D, 320B, 315Q, 380M, 138D via MG Road',
     highlights: ['Boulevard shopping', 'Theatres and restaurants', 'Metro art centre'],
     image: 'https://sowers.in/wp-content/uploads/2017/10/MG-Road-Bangalore.jpg',
   },
@@ -364,6 +384,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Afternoon / evening',
     entryFee: 'Free entry',
     howToGo: 'BMTC buses towards Brigade Gateway / Rajajinagar from Majestic. Autos from Yeshwanthpur side.',
+    bus: '82-A, 250-P, 258-CC from Majestic',
     highlights: ['Shopping and multiplex', 'Lake view', 'Family entertainment'],
   },
   // Entertainment & others
@@ -377,6 +398,8 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Full day trip',
     entryFee: 'Paid entry (indicative)',
     howToGo: 'Mysuru Road buses from Majestic towards Bidadi. Taxis and autos for groups.',
+    bus: '226N, 226Q from Majestic to Bidadi',
+    alert: 'One listing reports Innovative Film City permanently closed, so check before visiting.',
     highlights: ['Rides and attractions', 'Wax museum', 'Go-karting and mini-golf'],
   },
   {
@@ -389,6 +412,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Afternoon',
     entryFee: 'Paid entry (indicative)',
     howToGo: 'BMTC buses towards Jayamahal Road from Majestic. Autos from central Bengaluru.',
+    bus: '111, 111-C, 114-B, 114-C to the TV Tower stop',
     highlights: ['Real snow play area', 'Snow slides', 'Snowball zone'],
   },
   {
@@ -401,6 +425,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
     bestTime: 'Afternoon',
     entryFee: 'Paid entry (indicative)',
     howToGo: 'BMTC buses from Majestic towards Palace Grounds / Mekhri Circle.',
+    bus: '111, 111-C, 114-B to Palace Grounds',
     highlights: ['Rides for all ages', 'Water play section', 'Carnival games'],
   },
   {
