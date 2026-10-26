@@ -30,6 +30,10 @@ export interface Destination {
   gradient: string;
   description: string;
   howToReach: string;
+  /** Bus and train guidance from the famous stops (Majestic, City station). */
+  travel: { bus: string; train: string };
+  /** Verified real photo URL, when one was found. */
+  image?: string;
   tips: string[];
 }
 
@@ -55,6 +59,8 @@ export const DESTINATIONS: Destination[] = [
     description:
       'The royal city of the Wadiyars, famous for its illuminated palace, silk sarees, sandalwood and the Dasara festival that lights up the whole city.',
     howToReach: '145 km from Bengaluru — about 3 hours by road or train to Mysuru Junction.',
+    travel: { bus: 'KSRTC buses run every few minutes from Kempegowda Bus Station (Majestic) and the Mysuru Road satellite bus station.', train: 'Trains to Mysuru Junction (MYS) from KSR Bengaluru (SBC), about 3 hours.' },
+    image: 'https://www.tusktravel.com.mx/blog/wp-content/uploads/2025/04/Karnataka-Mysore-Palace-05-768x433.jpg',
     tips: [
       'Visit the palace on a Sunday evening for the illumination.',
       'Carry water for the Chamundi Hill steps.',
@@ -81,6 +87,8 @@ export const DESTINATIONS: Destination[] = [
     description:
       'The ruined capital of the Vijayanagara Empire, a UNESCO World Heritage Site where temples, bazaars and boulders stretch as far as the eye can see.',
     howToReach: '340 km — overnight bus or train to Hospet, then 13 km to Hampi.',
+    travel: { bus: 'Overnight KSRTC buses from Majestic to Hosapete, then a local bus or auto to Hampi.', train: 'Trains to Hosapete Junction (HPT), then 13 km by road to Hampi.' },
+    image: 'https://121clicks.com/wp-content/uploads/2019/11/hampi_karnataka_india_photos_05.jpg',
     tips: [
       'Start at sunrise to beat the heat.',
       'Rent a bicycle for the ruins trail.',
@@ -107,6 +115,8 @@ export const DESTINATIONS: Destination[] = [
     description:
       'The Scotland of India — misty coffee country of estate stays, waterfalls, river rafting and the distinct Kodava culture and cuisine.',
     howToReach: '265 km — about 5.5 hours by road via Kushalnagar.',
+    travel: { bus: 'KSRTC buses from Majestic to Madikeri, about 5 to 6 hours.', train: 'No railway station in Coorg. Nearest is Mysuru Junction (MYS), then a bus to Madikeri.' },
+    image: 'https://zyholidays.com/wp-content/uploads/2025/12/COORG-1-600x500.jpg',
     tips: [
       'Book estate stays early in peak season.',
       'Carry a light jacket even in summer.',
@@ -133,6 +143,8 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A temple town turned beach haven — quieter than Goa, with a cliff-side beach trek linking four beautiful coves.',
     howToReach: '480 km — overnight bus or train to Gokarna Road, then a short auto ride.',
+    travel: { bus: 'Overnight KSRTC buses from Majestic to Gokarna via Kumta.', train: 'Trains to Gokarna Road station, then an auto or bus into town.' },
+    image: 'https://www.a2ztrip.com/images/categories/2025-08-14_gokarna_image.jpg',
     tips: [
       'The beach trek needs good walking shoes.',
       'Carry cash; ATMs are limited in town.',
@@ -159,6 +171,8 @@ export const DESTINATIONS: Destination[] = [
     description:
       'Where coffee first came to India — rolling estates, the state’s highest peak and homestays under star-filled skies.',
     howToReach: '245 km — about 4.5 hours by road from Bengaluru.',
+    travel: { bus: 'KSRTC buses from Majestic to Chikmagalur.', train: 'Nearest railhead: Kadur (DRU), about 40 km away, then a bus or taxi.' },
+    image: 'https://www.visitindiaofficial.com/karnataka_chikkamagaluru.webp',
     tips: [
       'Mullayanagiri sunrise is worth the early start.',
       'Monsoon roads can be foggy — drive carefully.',
@@ -185,6 +199,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'The Garden City and India’s tech capital — gardens, breweries, legendary street food and perfect weather most of the year.',
     howToReach: 'The usual starting point — Kempegowda International Airport and city rail.',
+    travel: { bus: 'City buses from Majestic across the city, plus Namma Metro Purple and Green lines.', train: 'KSR Bengaluru (SBC), Bengaluru Cantonment (BNC) and Yeshwanthpur (YPR) stations.' },
     tips: [
       'Traffic peaks 9–11 AM and 6–9 PM.',
       'VV Puram food street is best after 6 PM.',
@@ -211,6 +226,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'The 6th-century Chalukyan capital — cave temples cut into red cliffs above a lake, plus Aihole and Pattadakal nearby.',
     howToReach: '450 km — train to Badami station or drive via Hubballi.',
+    travel: { bus: 'KSRTC buses from Majestic to Badami via Hubballi; local buses cover Aihole and Pattadakal.', train: 'Trains to Badami station (BDM) via Hubballi.' },
     tips: [
       'Combine Aihole and Pattadakal in one day.',
       'Visit the caves early for soft light.',
@@ -237,6 +253,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'The birthplace of Udupi cuisine — temple town, fishing harbours, island boats and some of the coast’s best seafood.',
     howToReach: '400 km — overnight bus or train to Udupi.',
+    travel: { bus: 'Overnight KSRTC buses from Majestic to Udupi and Mangaluru.', train: 'Trains to Udupi (UD) and Mangaluru Central (MAQ) on the Konkan line.' },
     tips: [
       'Try the temple-town vegetarian meals.',
       'St. Mary’s Island boats stop in rough seas.',
@@ -263,6 +280,8 @@ export const DESTINATIONS: Destination[] = [
     description:
       'One of India’s best places to see leopards and elephants — misty backwaters, tiger reserve safaris and jungle lodges.',
     howToReach: '220 km — about 4.5 hours by road via Mysuru.',
+    travel: { bus: 'KSRTC buses from Majestic to H.D. Kote and Kabini; most resorts arrange pickups from Mysuru.', train: 'Nearest railhead: Mysuru Junction (MYS), then the road to Kabini.' },
+    image: 'https://www.savaari.com/blog/wp-content/uploads/2021/05/Kabini5-kabini-river-1024x683.jpg',
     tips: [
       'Book safaris weeks ahead.',
       'Carry binoculars for birding.',
@@ -289,6 +308,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'The Sharavathi river plunges 830 feet in four cascades — most thunderous just after the monsoon.',
     howToReach: '380 km — train to Sagara or Talaguppa, or drive.',
+    travel: { bus: 'KSRTC buses from Majestic to Jog Falls via Sagara and Shivamogga.', train: 'Nearest railhead: Shivamogga Town (SMET), then a bus to Sagara and Jog.' },
     tips: [
       'Falls are fullest July–November.',
       'Steps to the base are steep — wear grip shoes.',
@@ -315,6 +335,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'Karnataka’s adventure capital — rafting on the Kali, jungle safaris and hornbills in the Western Ghats.',
     howToReach: '460 km — drive via Hubballi or train to Alnavar.',
+    travel: { bus: 'KSRTC buses from Majestic and Hubballi to Dandeli.', train: 'Nearest railhead: Hubballi Junction (UBL), then a bus to Dandeli.' },
     tips: [
       'Rafting depends on water release — confirm ahead.',
       'Carry quick-dry clothes.',
@@ -341,6 +362,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A temple town on the sea where a 123-foot Shiva statue watches over the beach — plus island scuba nearby.',
     howToReach: '510 km — train to Murudeshwar station on the Konkan line.',
+    travel: { bus: 'KSRTC buses from Majestic to Murudeshwar via Kumta.', train: 'Trains to Murudeshwar station (MRDW) on the Konkan line.' },
     tips: [
       'The gopura lift gives the best sea view.',
       'Netrani dives run October–May.',
@@ -367,6 +389,8 @@ export const DESTINATIONS: Destination[] = [
     description:
       'Twin Hoysala capitals whose soapstone temples carry some of the finest carving in India — every inch tells a story.',
     howToReach: '220 km — about 4 hours by road via Hassan.',
+    travel: { bus: 'KSRTC buses from Majestic to Hassan, then local buses to Belur and Halebidu.', train: 'Trains to Hassan Junction (HAS), then the road to Belur and Halebidu.' },
+    image: 'https://images.tv9kannada.com/wp-content/uploads/2022/01/Belur-Halebidu-Hoysala.jpg',
     tips: [
       'A guide makes the carvings come alive.',
       'Combine Belur and Halebidu in one day.',
@@ -393,6 +417,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'Tiger country on the Mysuru–Ooty road — open forests, big herds of elephants and misty hill temples at dawn.',
     howToReach: '215 km — about 4.5 hours via Mysuru.',
+    travel: { bus: 'KSRTC buses from Majestic and Mysuru towards Ooty via Gundlupet; alight at Bandipur.', train: 'Nearest railhead: Mysuru Junction (MYS), then a bus.' },
     tips: [
       'Morning safari has the best sightings.',
       'The forest road closes at night — plan arrival.',
@@ -419,6 +444,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'The Adil Shahi capital — home to Gol Gumbaz, whose dome is one of the largest in the world, and the whispering gallery.',
     howToReach: '520 km — train to Vijayapura or drive.',
+    travel: { bus: 'KSRTC buses from Majestic to Vijayapura.', train: 'Trains to Vijayapura station (BJP).' },
     tips: [
       'The whispering gallery is best with a small group.',
       'Carry water; the Deccan sun is strong.',
@@ -445,6 +471,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A quieter Malnad escape — star-shaped fort, rainforest ghats, estate homestays and sunrise hikes.',
     howToReach: '220 km — about 4 hours by road or train.',
+    travel: { bus: 'KSRTC buses from Majestic to Sakleshpur.', train: 'Trains to Sakleshpur station (SKLR).' },
     tips: [
       'Bisle Ghat is best at dawn.',
       'Homestays beat hotels here.',
@@ -471,6 +498,8 @@ export const DESTINATIONS: Destination[] = [
     description:
       'One of Jainism’s holiest sites — a single-rock 58-foot statue of Bahubali standing atop Vindhyagiri hill.',
     howToReach: '145 km — drive via Channarayapatna or train to Shravanabelagola.',
+    travel: { bus: 'KSRTC buses from Majestic to Shravanabelagola via Channarayapatna.', train: 'Nearest railhead: Hassan Junction (HAS), about 50 km away.' },
+    image: 'https://karnatakatourism.org/wp-content/uploads/2020/06/shravanabelagola.jpg',
     tips: [
       'Climb early morning; the steps are climbed barefoot.',
       'Combine with Belur–Halebidu in one route.',
@@ -497,6 +526,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'An island town on the Cauvery where Tipu Sultan ruled — temples, a summer palace and the famous Gumbaz tombs.',
     howToReach: '125 km — about 2.5 hours via the Mysuru road or by train.',
+    travel: { bus: 'KSRTC buses from Majestic and Mysuru on the Mysuru Road route stop at Srirangapatna.', train: 'Trains to Srirangapatna station on the Bengaluru-Mysuru line.' },
     tips: [
       'Visit before Mysuru in one trip.',
       'Carry a hat; the island town is open and sunny.',
@@ -523,6 +553,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A perfectly preserved 13th-century Hoysala temple on a star platform — quieter than Belur, just as beautiful.',
     howToReach: '135 km — about 3 hours via Bannur road.',
+    travel: { bus: 'KSRTC buses from Mysuru city bus stand to Somnathapura.', train: 'Nearest railhead: Mysuru Junction (MYS), then a bus.' },
     tips: [
       'Hire the ASI guide at the entrance.',
       'No food stalls inside — carry water.',
@@ -549,6 +580,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'Bengaluru’s favourite sunrise — a hill fort above a sea of clouds, plus cycling, paragliding and old palaces.',
     howToReach: '60 km — about 1.5 hours’ drive from Bengaluru.',
+    travel: { bus: 'KSRTC buses from Majestic to Nandi Hills and Chikkaballapur; extra buses run on weekends.', train: 'Nearest railhead: Chikkaballapur station, then a bus or auto uphill.' },
     tips: [
       'Reach before 6 AM for the sunrise crowd.',
       'Weekends are packed — go on a weekday.',
@@ -575,6 +607,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'India’s largest Tibetan settlement — golden temples, chanting monks and momos, near Coorg’s coffee country.',
     howToReach: '225 km — about 5 hours via Kushalnagar.',
+    travel: { bus: 'KSRTC buses from Majestic and Mysuru to Kushalnagar, then local transport to Bylakuppe.', train: 'Nearest railhead: Mysuru Junction (MYS), then a bus.' },
     tips: [
       'Morning prayers are open to visitors.',
       'Dress modestly inside the monastery.',
@@ -601,6 +634,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A massive hill fort of seven stone rings — of palaces, secret passages and the legend of Obavva and her onake.',
     howToReach: '200 km — about 3.5 hours via NH48 or by train.',
+    travel: { bus: 'KSRTC buses from Majestic to Chitradurga on NH48.', train: 'Trains to Chitradurga station (CTA).' },
     tips: [
       'Wear sturdy shoes; the fort is vast.',
       'Carry water — there is little shade inside.',
@@ -627,6 +661,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'The Bahmani capital — a great fort, royal tombs and Bidriware, the black-metal inlay craft born here.',
     howToReach: '690 km — train to Bidar, or fly to Hyderabad and drive.',
+    travel: { bus: 'KSRTC buses from Majestic to Bidar.', train: 'Trains to Bidar station (BIDR).' },
     tips: [
       'Bidriware makes a great souvenir.',
       'Combine with Kalaburagi in one north trip.',
@@ -653,6 +688,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A Deccan city of Sufi shrines, fort walls and domed tombs — the spiritual heart of the north.',
     howToReach: '620 km — train to Kalaburagi or drive.',
+    travel: { bus: 'KSRTC buses from Majestic to Kalaburagi.', train: 'Trains to Kalaburagi Junction (KLBG).' },
     tips: [
       'Dargah evenings are atmospheric.',
       'Summer heat is intense — visit in winter.',
@@ -679,6 +715,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'The Cauvery splits into twin waterfalls here — and powered Asia’s first hydroelectric station in 1902.',
     howToReach: '135 km — about 3 hours via Kanakapura road.',
+    travel: { bus: 'KSRTC buses from Mysuru and Malavalli towards Shivanasamudra.', train: 'Nearest railhead: Mysuru Junction (MYS), then a bus.' },
     tips: [
       'Best just after the monsoon.',
       'Do not swim near the falls.',
@@ -705,6 +742,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A rainforest village of record rainfall, famous sunsets, king cobras and the Malgudi Days connection.',
     howToReach: '355 km — drive via Shivamogga or by bus.',
+    travel: { bus: 'KSRTC buses from Majestic and Udupi towards Agumbe via Thirthahalli.', train: 'Nearest railheads: Udupi (UD) and Shivamogga Town (SMET), then a bus.' },
     tips: [
       'Leeches in monsoon — wear long socks.',
       'Sunset point fills fast; arrive early.',
@@ -731,6 +769,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A horse-face mountain rising over rolling grasslands — one of the Western Ghats’ classic treks.',
     howToReach: '330 km — drive via Karkala; trek permits come from the forest department.',
+    travel: { bus: 'KSRTC buses from Mangaluru and Udupi to Kalasa, then local transport to Kudremukh.', train: 'Nearest railhead: Mangaluru Junction (MAJN), then a bus.' },
     tips: [
       'Trek permits are mandatory — book ahead.',
       'Start treks before 8 AM.',
@@ -757,6 +796,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'Adi Shankaracharya’s first peetham on the banks of the Tunga — temples, river aarti and forested hills.',
     howToReach: '320 km — drive via Chikmagalur or by bus.',
+    travel: { bus: 'KSRTC buses from Majestic and Udupi to Sringeri.', train: 'Nearest railheads: Udupi (UD) and Shivamogga Town (SMET), then a bus.' },
     tips: [
       'Evening aarti on the river is peaceful.',
       'Combine with Agumbe in one Malnad loop.',
@@ -783,6 +823,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A temple town run on charity — lakhs of pilgrims, free meals all day and the Manjunatha shrine.',
     howToReach: '375 km — bus or train to Mangaluru, then road.',
+    travel: { bus: 'KSRTC buses from Majestic and Mangaluru to Dharmasthala.', train: 'Nearest railhead: Mangaluru Junction (MAJN), then a bus.' },
     tips: [
       'Free meals run all day for pilgrims.',
       'Dress traditionally for temple entry.',
@@ -809,6 +850,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'Two giant black limestone towers in the forest, sacred to Shiva — a short trek from the road through thick green.',
     howToReach: '430 km — drive via Sirsi or Kumta.',
+    travel: { bus: 'KSRTC buses from Majestic to Kumta, then a local bus or auto to Yana.', train: 'Nearest railhead: Kumta station, then the road to Yana.' },
     tips: [
       'The last stretch is a forest walk — wear shoes.',
       'Monsoon makes the trail slippery.',
@@ -835,6 +877,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A quiet port town where the Kali meets the sea — the beach Tagore called the Kashmir of Karnataka.',
     howToReach: '520 km — train to Karwar or drive via the Goa border.',
+    travel: { bus: 'Overnight KSRTC buses from Majestic to Karwar.', train: 'Trains to Karwar station (KAWR) on the Konkan line.' },
     tips: [
       'Seafood at the harbour is a must.',
       'Devbagh is quieter than the main beach.',
@@ -861,6 +904,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A rare beach where the Arabian Sea runs along one side of the highway and the Souparnika river along the other.',
     howToReach: '445 km — drive on NH66 or bus to Kundapura.',
+    travel: { bus: 'KSRTC buses from Majestic to Kundapura, then a local bus to Maravanthe.', train: 'Trains to Kundapura station (KUDA) on the Konkan line, then a short drive.' },
     tips: [
       'The sunset from the highway stretch is famous.',
       'Swimming currents can be strong — ask locals.',
@@ -887,6 +931,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A hill temple town of Ramanuja’s tradition — climb to Yoga Narasimha, then eat puliyogare in the old streets.',
     howToReach: '145 km — about 3 hours via Pandavapura road.',
+    travel: { bus: 'KSRTC buses from Mysuru and Mandya towards Melukote.', train: 'Nearest railheads: Mysuru Junction (MYS) and Mandya (MYA), then a bus.' },
     tips: [
       'Climb the hill before noon.',
       'Try the temple town’s puliyogare.',
@@ -913,6 +958,7 @@ export const DESTINATIONS: Destination[] = [
     description:
       'A bridge between the Eastern and Western Ghats — tigers, elephants, Soliga culture and a hilltop temple.',
     howToReach: '185 km — about 4 hours via Chamarajanagar.',
+    travel: { bus: 'KSRTC buses from Mysuru towards Yelandur and Kollegal, then local transport to BR Hills.', train: 'Nearest railhead: Mysuru Junction (MYS), then a bus.' },
     tips: [
       'Safaris need advance booking.',
       'Carry warm layers for early safaris.',

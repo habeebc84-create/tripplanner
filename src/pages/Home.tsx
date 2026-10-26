@@ -1,5 +1,5 @@
 import { ArrowRight, CalendarDays, MapPin, Moon, Sparkles, Star, Sun, Wallet } from 'lucide-react';
-import { DESTINATIONS } from '../data/destinations';
+import { DESTINATIONS, type Destination } from '../data/destinations';
 import { LANG_META, tr, type Lang } from '../lib/i18n';
 import Logo from '../components/Logo';
 
@@ -10,9 +10,10 @@ interface HomePageProps {
   onThemeToggle: () => void;
   onEnter: () => void;
   onAbout: () => void;
+  onPickPlace: (place: Destination) => void;
 }
 
-export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onEnter, onAbout }: HomePageProps) {
+export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onEnter, onAbout, onPickPlace }: HomePageProps) {
   const t = (key: string) => tr(lang, key);
   const topPicks = [...DESTINATIONS].sort((a, b) => b.rating - a.rating).slice(0, 6);
 
@@ -114,19 +115,38 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
           {topPicks.map((d) => (
             <button
               key={d.id}
-              onClick={onEnter}
+              onClick={() => onPickPlace(d)}
               className="overflow-hidden rounded-3xl border border-stone-200 bg-white text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-stone-800 dark:bg-stone-900"
             >
-              <div className={`bg-gradient-to-br ${d.gradient} px-5 py-6 text-white`}>
-                <p className="text-xs font-bold tracking-wide uppercase opacity-80">{d.region}</p>
-                <h3 className="mt-1 text-2xl font-extrabold">{d.name}</h3>
-                <p className="mt-1 text-sm opacity-90">{d.tagline}</p>
-              </div>
-              <div className="flex items-center justify-between px-5 py-3 text-sm text-stone-600 dark:text-stone-400">
+              {d.image ? (
+                <>
+                  <img
+                    src={d.image}
+                    alt={d.name}
+                    loading="lazy"
+                    className="h-44 w-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
+                  <div className="px-5 py-4">
+                    <p className="text-xs font-bold tracking-wide text-orange-600 uppercase">{d.region}</p>
+                    <h3 className="mt-1 text-xl font-extrabold">{d.name}</h3>
+                    <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{d.tagline}</p>
+                  </div>
+                </>
+              ) : (
+                <div className={`bg-gradient-to-br ${d.gradient} px-5 py-6 text-white`}>
+                  <p className="text-xs font-bold tracking-wide uppercase opacity-80">{d.region}</p>
+                  <h3 className="mt-1 text-2xl font-extrabold">{d.name}</h3>
+                  <p className="mt-1 text-sm opacity-90">{d.tagline}</p>
+                </div>
+              )}
+              <div className="flex items-center justify-between px-5 pb-4 text-sm text-stone-600 dark:text-stone-400">
                 <span className="flex items-center gap-1.5">
                   <Star size={15} className="text-amber-500" /> {d.rating.toFixed(1)}
                 </span>
-                <span className="font-semibold text-orange-600">{t('enterWebsite')} →</span>
+                <span className="font-semibold text-orange-600">{t('viewDetails')} →</span>
               </div>
             </button>
           ))}

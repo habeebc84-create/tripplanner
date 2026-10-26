@@ -70,7 +70,10 @@ const en: Dict = {
   entryLabel: 'Entry',
   mapNote:
     'The map loads live from Google. Bus numbers and train times change — open directions for the live numbers.',
-  planBengaluruDay: 'Plan a day in Bengaluru',
+  travelTitle: 'Bus & train travel',
+  liveTrains: 'Live trains from City station',
+  travelNote:
+    'Routes and timings change — live directions show the current buses and trains.',
   palaceCaption: 'Bangalore Palace — the city’s most photographed landmark',
   photosLabel: 'Famous places in photos',
   photoCredit: 'Photos from the open web; credit belongs to their publishers.',
@@ -197,7 +200,10 @@ const hi: Dict = {
   entryLabel: 'प्रवेश',
   mapNote:
     'मानचित्र Google से लाइव लोड होता है। बस नंबर और ट्रेन का समय बदलता रहता है — लाइव नंबरों के लिए दिशा-निर्देश खोलें।',
-  planBengaluruDay: 'बेंगलुरु में एक दिन की योजना बनाएँ',
+  travelTitle: 'बस और ट्रेन यात्रा',
+  liveTrains: 'सिटी स्टेशन से लाइव ट्रेनें',
+  travelNote:
+    'रूट और समय बदलते रहते हैं — लाइव दिशा-निर्देश वर्तमान बसें और ट्रेनें दिखाते हैं।',
   palaceCaption: 'बैंगलोर पैलेस — शहर का सबसे अधिक फोटो खींचा गया स्थल',
   photosLabel: 'तस्वीरों में प्रसिद्ध स्थान',
   photoCredit: 'तस्वीरें खुले वेब से हैं; श्रेय उनके प्रकाशकों को जाता है।',
@@ -324,7 +330,10 @@ const kn: Dict = {
   entryLabel: 'ಪ್ರವೇಶ',
   mapNote:
     'ನಕ್ಷೆ Google ನಿಂದ ಲೈವ್ ಲೋಡ್ ಆಗುತ್ತದೆ. ಬಸ್ ಸಂಖ್ಯೆಗಳು ಮತ್ತು ರೈಲು ಸಮಯ ಬದಲಾಗುತ್ತದೆ — ಲೈವ್ ಸಂಖ್ಯೆಗಳಿಗಾಗಿ ನಿರ್ದೇಶನಗಳನ್ನು ತೆರೆಯಿರಿ.',
-  planBengaluruDay: 'ಬೆಂಗಳೂರಿನಲ್ಲಿ ಒಂದು ದಿನ ಯೋಜಿಸಿ',
+  travelTitle: 'ಬಸ್ ಮತ್ತು ರೈಲು ಪ್ರಯಾಣ',
+  liveTrains: 'ಸಿಟಿ ನಿಲ್ದಾಣದಿಂದ ಲೈವ್ ರೈಲುಗಳು',
+  travelNote:
+    'ಮಾರ್ಗಗಳು ಮತ್ತು ಸಮಯ ಬದಲಾಗುತ್ತದೆ — ಲೈವ್ ನಿರ್ದೇಶನಗಳು ಪ್ರಸ್ತುತ ಬಸ್‌ಗಳು ಮತ್ತು ರೈಲುಗಳನ್ನು ತೋರಿಸುತ್ತವೆ.',
   palaceCaption: 'ಬೆಂಗಳೂರು ಅರಮನೆ — ನಗರದ ಅತ್ಯಂತ ಹೆಚ್ಚು ಛಾಯಾಚಿತ್ರಗೊಂಡ ಹೆಗ್ಗುರುತು',
   photosLabel: 'ಫೋಟೋಗಳಲ್ಲಿ ಪ್ರಸಿದ್ಧ ಸ್ಥಳಗಳು',
   photoCredit: 'ಫೋಟೋಗಳು ಮುಕ್ತ ವೆಬ್‌ನಿಂದ; ಕ್ರೆಡಿಟ್ ಅವುಗಳ ಪ್ರಕಾಶಕರಿಗೆ ಸೇರಿದೆ.',

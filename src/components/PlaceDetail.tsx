@@ -1,8 +1,8 @@
-import { CalendarDays, Car, Heart, MapPin, Route, Star, Wallet, X, BedDouble, ExternalLink } from 'lucide-react';
+import { Bus, CalendarDays, Car, Heart, MapPin, Route, Star, Train, Wallet, X, BedDouble, ExternalLink } from 'lucide-react';
 import type { BudgetTier, Destination } from '../data/destinations';
 import { formatINR } from '../lib/planner';
 import { BUDGET_LABELS_I18N, INTEREST_LABELS_I18N, tr, type Lang } from '../lib/i18n';
-import { hotelsSearchUrl, mapsSearchUrl } from '../lib/maps';
+import { hotelsSearchUrl, mapsDirectionsTransitUrl, mapsSearchUrl } from '../lib/maps';
 
 interface PlaceDetailProps {
   place: Destination;
@@ -89,6 +89,43 @@ export default function PlaceDetail({
               <Car size={18} className="text-orange-600" /> {t('howToReach')}
             </h3>
             <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">{place.howToReach}</p>
+          </div>
+
+          <div>
+            <h3 className="flex items-center gap-2 text-lg font-bold">
+              <Bus size={18} className="text-orange-600" /> {t('travelTitle')}
+            </h3>
+            <ul className="mt-2 space-y-3 text-sm text-stone-600 dark:text-stone-300">
+              <li className="flex gap-2">
+                <Bus size={15} className="mt-0.5 shrink-0 text-orange-600" />
+                <span>
+                  {place.travel.bus}{' '}
+                  <a
+                    href={mapsDirectionsTransitUrl('Kempegowda Bus Station, Bengaluru', place.name)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold text-orange-600 underline"
+                  >
+                    {t('liveTransit')}
+                  </a>
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <Train size={15} className="mt-0.5 shrink-0 text-sky-600" />
+                <span>
+                  {place.travel.train}{' '}
+                  <a
+                    href={mapsDirectionsTransitUrl('KSR Bengaluru City Railway Station', place.name)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold text-orange-600 underline"
+                  >
+                    {t('liveTrains')}
+                  </a>
+                </span>
+              </li>
+            </ul>
+            <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">{t('travelNote')}</p>
           </div>
 
           <div>

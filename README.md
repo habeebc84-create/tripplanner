@@ -60,6 +60,15 @@ Built for the **Travel & Tourism** hackathon track.
   Bull Temple, MG Road, Brigade Road, Big Banyan Tree). Every URL was
   checked to return a real image before shipping, and any photo that fails
   to load hides itself instead of showing a broken frame.
+- **Top picks have photos** — the Home top-pick cards now show real photos
+  for Hampi, Mysuru, Coorg, Kabini, Gokarna, Chikmagalur (plus Belur and
+  Shravanabelagola as backups), and tapping one opens that place's full
+  detail sheet.
+- **Bus & train travel per place** — every one of the 34 destinations now
+  carries bus guidance (KSRTC from Majestic) and train guidance (station or
+  nearest railhead), shown in the place detail with live transit-direction
+  links from Kempegowda Bus Station and KSR Bengaluru City station. No
+  route or train numbers are printed — live numbers come from Google Maps.
 
 ## Scale: built for 10 lakh searches a day
 

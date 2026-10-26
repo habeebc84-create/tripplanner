@@ -251,6 +251,10 @@ export default function App() {
         theme={theme}
         onThemeToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         onEnter={() => setView('app')}
+        onPickPlace={(d) => {
+          setView('app');
+          setSelectedPlace(d);
+        }}
         onAbout={() => {
           setView('app');
           setTimeout(
