@@ -22,10 +22,12 @@ Built for the **Travel & Tourism** hackathon track.
   activities, scaled by budget tier and group size.
 - **Regenerate + copy** — reshuffle close calls for a fresh plan, or copy the
   whole plan as text to share.
-- **Destination explorer** — all 16 places (Mysuru, Hampi, Coorg, Gokarna,
+- **Destination explorer** — 34 famous places across Karnataka (Mysuru, Hampi, Coorg, Gokarna,
   Chikmagalur, Badami, Udupi, Kabini, Jog Falls, Dandeli, Murudeshwar,
-  Belur–Halebidu, Bandipur, Vijayapura, Sakleshpur, Bengaluru) with tags,
-  best season and per-day costs, filterable by interest.
+  Belur–Halebidu, Bandipur, Vijayapura, Sakleshpur, Bengaluru, Shravanabelagola,
+  Srirangapatna, Nandi Hills, Chitradurga, Bidar, Sringeri, Dharmasthala, Karwar and more) with tags,
+  best season and per-day costs, filterable by interest. Tap any place for full details — what to do,
+  how to reach, and tips — or plan a trip around it.
 
 ## How the "AI" works
 

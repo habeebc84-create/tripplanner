@@ -4,7 +4,9 @@ import {
   Clock,
   Compass,
   Copy,
+  Download,
   Gauge,
+  Heart,
   House,
   Landmark,
   LayoutDashboard,
@@ -12,6 +14,7 @@ import {
   Mountain,
   Music,
   Route,
+  Search,
   Sparkles,
   Star,
   Sun,
@@ -26,12 +29,14 @@ import {
   DESTINATIONS,
   GROUP_SIZE,
   type BudgetTier,
+  type Destination,
   type Group,
   type Interest,
   type Pace,
 } from './data/destinations';
 import { formatINR, generateItinerary } from './lib/planner';
 import Logo from './components/Logo';
+import PlaceDetail from './components/PlaceDetail';
 import HomePage from './pages/Home';
 import {
   BUDGET_LABELS_I18N,
@@ -79,6 +84,18 @@ export default function App() {
   const [copied, setCopied] = useState(false);
   const [filter, setFilter] = useState<Interest | 'all'>('all');
   const [tab, setTab] = useState<Tab>('overview');
+  const [selectedPlace, setSelectedPlace] = useState<Destination | null>(null);
+  const [search, setSearch] = useState('');
+  const [sort, setSort] = useState<'rating' | 'cost' | 'distance'>('rating');
+  const [favsOnly, setFavsOnly] = useState(false);
+  const [favourites, setFavourites] = useState<string[]>(() => {
+    try {
+      const parsed = JSON.parse(window.localStorage.getItem('yatra-favs') || '[]');
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  });
   const [view, setView] = useState<'home' | 'app'>('home');
 
   const t = (key: string) => tr(lang, key);
@@ -103,6 +120,26 @@ export default function App() {
     }
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem('yatra-favs', JSON.stringify(favourites));
+    } catch {
+      /* private mode */
+    }
+  }, [favourites]);
+
+  const toggleFavourite = (id: string) =>
+    setFavourites((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
+
+  const planAround = (place: Destination) => {
+    setInterests(place.tags);
+    setDays(Math.max(2, place.days));
+    setGenerated(true);
+    setTab('overview');
+    setSelectedPlace(null);
+    document.getElementById('planner')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const itinerary = useMemo(
     () => generateItinerary({ interests, days, budget, pace, group, seed }),
@@ -138,10 +175,35 @@ export default function App() {
     }
   };
 
-  const filteredDestinations =
-    filter === 'all'
-      ? DESTINATIONS
-      : DESTINATIONS.filter((d) => d.tags.includes(filter));
+  const downloadPlan = () => {
+    const blob = new Blob([planText], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'karnataka-trip-plan.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const filteredDestinations = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    let list = DESTINATIONS.filter((d) => {
+      if (filter !== 'all' && !d.tags.includes(filter)) return false;
+      if (favsOnly && !favourites.includes(d.id)) return false;
+      if (
+        q &&
+        !`${d.name} ${d.tagline} ${d.region}`.toLowerCase().includes(q)
+      )
+        return false;
+      return true;
+    });
+    list = [...list].sort((a, b) => {
+      if (sort === 'cost') return a.costPerDay.moderate - b.costPerDay.moderate;
+      if (sort === 'distance') return a.distanceFromBengaluruKm - b.distanceFromBengaluruKm;
+      return b.rating - a.rating;
+    });
+    return list;
+  }, [filter, favsOnly, favourites, search, sort]);
 
   const budgetParts = [
     { label: t('stay'), value: itinerary.cost.stay, color: '#ea580c' },
@@ -354,6 +416,12 @@ export default function App() {
                     {copied ? <Check size={15} /> : <Copy size={15} />}
                     {copied ? t('copied') : t('copyPlan')}
                   </button>
+                  <button
+                    onClick={downloadPlan}
+                    className="flex items-center gap-2 rounded-full border border-stone-300 px-4 py-2 text-sm font-semibold hover:border-orange-400 dark:border-stone-700"
+                  >
+                    <Download size={15} /> {t('downloadPlan')}
+                  </button>
                 </div>
               </div>
 
@@ -418,7 +486,12 @@ export default function App() {
                   <div className="mt-6 overflow-x-auto pb-2">
                     <div className="flex min-w-max items-start gap-0">
                       {itinerary.stops.map((stop, i) => (
-                        <div key={stop.destination.id} className="flex items-start">
+                        <div
+                          key={stop.destination.id}
+                          onClick={() => setSelectedPlace(stop.destination)}
+                          className="flex cursor-pointer items-start"
+                          title={t('viewDetails')}
+                        >
                           {i > 0 && <div className="mt-5 h-0.5 w-10 bg-orange-300 sm:w-16" />}
                           <div className="flex w-28 flex-col items-center text-center">
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-600 text-xs font-bold text-white">
@@ -552,13 +625,57 @@ export default function App() {
             </button>
           ))}
         </div>
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <label className="flex min-w-56 flex-1 items-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm dark:border-stone-700 dark:bg-stone-900">
+            <Search size={15} className="shrink-0 text-stone-400" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={t('searchPlaceholder')}
+              className="w-full bg-transparent outline-none placeholder:text-stone-400"
+            />
+          </label>
+          <label className="flex items-center gap-2 text-sm font-medium">
+            {t('sortBy')}
+            <select
+              value={sort}
+              onChange={(e) => setSort(e.target.value as 'rating' | 'cost' | 'distance')}
+              className="rounded-full border border-stone-300 bg-white px-3 py-2 text-sm dark:border-stone-700 dark:bg-stone-900"
+            >
+              <option value="rating">{t('sortRating')}</option>
+              <option value="cost">{t('sortCost')}</option>
+              <option value="distance">{t('sortDistance')}</option>
+            </select>
+          </label>
+          <button
+            onClick={() => setFavsOnly((v) => !v)}
+            className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold ${
+              favsOnly
+                ? 'border-rose-500 bg-rose-500 text-white'
+                : 'border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900'
+            }`}
+          >
+            <Heart size={15} fill={favsOnly ? '#fff' : 'none'} /> {t('favourites')} ({favourites.length})
+          </button>
+        </div>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filteredDestinations.map((d) => (
             <article
               key={d.id}
-              className="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-stone-800 dark:bg-stone-900"
+              onClick={() => setSelectedPlace(d)}
+              className="cursor-pointer overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-stone-800 dark:bg-stone-900"
             >
-              <div className={`bg-gradient-to-br ${d.gradient} px-5 py-6 text-white`}>
+              <div className={`relative bg-gradient-to-br ${d.gradient} px-5 py-6 text-white`}>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleFavourite(d.id);
+                  }}
+                  aria-label="Favourite"
+                  className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-black/25 text-white hover:bg-black/40"
+                >
+                  <Heart size={16} fill={favourites.includes(d.id) ? '#fff' : 'none'} />
+                </button>
                 <p className="text-xs font-bold tracking-wide uppercase opacity-80">{d.region}</p>
                 <h3 className="mt-1 text-2xl font-extrabold">{d.name}</h3>
                 <p className="mt-1 text-sm opacity-90">{d.tagline}</p>
@@ -588,6 +705,15 @@ export default function App() {
                     {t('fromPerDay')} {formatINR(d.costPerDay.moderate)}{t('perDay')}
                   </span>
                 </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedPlace(d);
+                  }}
+                  className="mt-4 w-full rounded-full bg-orange-600 py-2 text-sm font-bold text-white hover:bg-orange-700"
+                >
+                  {t('viewDetails')}
+                </button>
               </div>
             </article>
           ))}
@@ -618,6 +744,17 @@ export default function App() {
       <footer className="border-t border-stone-200 py-6 text-center text-sm text-stone-500 dark:border-stone-800 dark:text-stone-400">
         Karnataka Yatra AI — {t('footer')}
       </footer>
+
+      {selectedPlace && (
+        <PlaceDetail
+          place={selectedPlace}
+          lang={lang}
+          isFavourite={favourites.includes(selectedPlace.id)}
+          onToggleFavourite={toggleFavourite}
+          onClose={() => setSelectedPlace(null)}
+          onPlanAround={planAround}
+        />
+      )}
     </div>
   );
 }

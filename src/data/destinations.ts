@@ -22,11 +22,15 @@ export interface Destination {
   days: number;
   /** Indicative per-person cost per day in INR, by budget tier. */
   costPerDay: Record<BudgetTier, number>;
+  /** What to do here. */
   highlights: string[];
   bestTime: string;
   distanceFromBengaluruKm: number;
   rating: number;
   gradient: string;
+  description: string;
+  howToReach: string;
+  tips: string[];
 }
 
 export const INTEREST_LABELS: Record<Interest, string> = {
@@ -59,6 +63,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 145,
     rating: 4.8,
     gradient: 'from-amber-500 to-rose-600',
+    description:
+      'The royal city of the Wadiyars, famous for its illuminated palace, silk sarees, sandalwood and the Dasara festival that lights up the whole city.',
+    howToReach: '145 km from Bengaluru — about 3 hours by road or train to Mysuru Junction.',
+    tips: [
+      'Visit the palace on a Sunday evening for the illumination.',
+      'Carry water for the Chamundi Hill steps.',
+    ],
   },
   {
     id: 'hampi',
@@ -78,6 +89,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 340,
     rating: 4.9,
     gradient: 'from-orange-500 to-amber-700',
+    description:
+      'The ruined capital of the Vijayanagara Empire, a UNESCO World Heritage Site where temples, bazaars and boulders stretch as far as the eye can see.',
+    howToReach: '340 km — overnight bus or train to Hospet, then 13 km to Hampi.',
+    tips: [
+      'Start at sunrise to beat the heat.',
+      'Rent a bicycle for the ruins trail.',
+    ],
   },
   {
     id: 'coorg',
@@ -97,6 +115,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 265,
     rating: 4.8,
     gradient: 'from-emerald-600 to-teal-800',
+    description:
+      'The Scotland of India — misty coffee country of estate stays, waterfalls, river rafting and the distinct Kodava culture and cuisine.',
+    howToReach: '265 km — about 5.5 hours by road via Kushalnagar.',
+    tips: [
+      'Book estate stays early in peak season.',
+      'Carry a light jacket even in summer.',
+    ],
   },
   {
     id: 'gokarna',
@@ -116,6 +141,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 480,
     rating: 4.7,
     gradient: 'from-sky-500 to-indigo-600',
+    description:
+      'A temple town turned beach haven — quieter than Goa, with a cliff-side beach trek linking four beautiful coves.',
+    howToReach: '480 km — overnight bus or train to Gokarna Road, then a short auto ride.',
+    tips: [
+      'The beach trek needs good walking shoes.',
+      'Carry cash; ATMs are limited in town.',
+    ],
   },
   {
     id: 'chikmagalur',
@@ -135,6 +167,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 245,
     rating: 4.7,
     gradient: 'from-lime-600 to-emerald-800',
+    description:
+      'Where coffee first came to India — rolling estates, the state’s highest peak and homestays under star-filled skies.',
+    howToReach: '245 km — about 4.5 hours by road from Bengaluru.',
+    tips: [
+      'Mullayanagiri sunrise is worth the early start.',
+      'Monsoon roads can be foggy — drive carefully.',
+    ],
   },
   {
     id: 'bengaluru',
@@ -154,6 +193,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 0,
     rating: 4.5,
     gradient: 'from-violet-600 to-purple-800',
+    description:
+      'The Garden City and India’s tech capital — gardens, breweries, legendary street food and perfect weather most of the year.',
+    howToReach: 'The usual starting point — Kempegowda International Airport and city rail.',
+    tips: [
+      'Traffic peaks 9–11 AM and 6–9 PM.',
+      'VV Puram food street is best after 6 PM.',
+    ],
   },
   {
     id: 'badami',
@@ -173,6 +219,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 450,
     rating: 4.6,
     gradient: 'from-red-600 to-orange-700',
+    description:
+      'The 6th-century Chalukyan capital — cave temples cut into red cliffs above a lake, plus Aihole and Pattadakal nearby.',
+    howToReach: '450 km — train to Badami station or drive via Hubballi.',
+    tips: [
+      'Combine Aihole and Pattadakal in one day.',
+      'Visit the caves early for soft light.',
+    ],
   },
   {
     id: 'udupi',
@@ -192,6 +245,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 400,
     rating: 4.6,
     gradient: 'from-cyan-600 to-blue-800',
+    description:
+      'The birthplace of Udupi cuisine — temple town, fishing harbours, island boats and some of the coast’s best seafood.',
+    howToReach: '400 km — overnight bus or train to Udupi.',
+    tips: [
+      'Try the temple-town vegetarian meals.',
+      'St. Mary’s Island boats stop in rough seas.',
+    ],
   },
   {
     id: 'kabini',
@@ -211,6 +271,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 220,
     rating: 4.8,
     gradient: 'from-green-700 to-emerald-900',
+    description:
+      'One of India’s best places to see leopards and elephants — misty backwaters, tiger reserve safaris and jungle lodges.',
+    howToReach: '220 km — about 4.5 hours by road via Mysuru.',
+    tips: [
+      'Book safaris weeks ahead.',
+      'Carry binoculars for birding.',
+    ],
   },
   {
     id: 'jog',
@@ -230,6 +297,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 380,
     rating: 4.5,
     gradient: 'from-teal-600 to-cyan-800',
+    description:
+      'The Sharavathi river plunges 830 feet in four cascades — most thunderous just after the monsoon.',
+    howToReach: '380 km — train to Sagara or Talaguppa, or drive.',
+    tips: [
+      'Falls are fullest July–November.',
+      'Steps to the base are steep — wear grip shoes.',
+    ],
   },
   {
     id: 'dandeli',
@@ -249,6 +323,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 460,
     rating: 4.6,
     gradient: 'from-emerald-700 to-green-900',
+    description:
+      'Karnataka’s adventure capital — rafting on the Kali, jungle safaris and hornbills in the Western Ghats.',
+    howToReach: '460 km — drive via Hubballi or train to Alnavar.',
+    tips: [
+      'Rafting depends on water release — confirm ahead.',
+      'Carry quick-dry clothes.',
+    ],
   },
   {
     id: 'murudeshwar',
@@ -268,6 +349,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 510,
     rating: 4.5,
     gradient: 'from-blue-600 to-indigo-800',
+    description:
+      'A temple town on the sea where a 123-foot Shiva statue watches over the beach — plus island scuba nearby.',
+    howToReach: '510 km — train to Murudeshwar station on the Konkan line.',
+    tips: [
+      'The gopura lift gives the best sea view.',
+      'Netrani dives run October–May.',
+    ],
   },
   {
     id: 'belur',
@@ -287,6 +375,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 220,
     rating: 4.7,
     gradient: 'from-stone-600 to-amber-800',
+    description:
+      'Twin Hoysala capitals whose soapstone temples carry some of the finest carving in India — every inch tells a story.',
+    howToReach: '220 km — about 4 hours by road via Hassan.',
+    tips: [
+      'A guide makes the carvings come alive.',
+      'Combine Belur and Halebidu in one day.',
+    ],
   },
   {
     id: 'bandipur',
@@ -306,6 +401,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 215,
     rating: 4.6,
     gradient: 'from-yellow-700 to-green-900',
+    description:
+      'Tiger country on the Mysuru–Ooty road — open forests, big herds of elephants and misty hill temples at dawn.',
+    howToReach: '215 km — about 4.5 hours via Mysuru.',
+    tips: [
+      'Morning safari has the best sightings.',
+      'The forest road closes at night — plan arrival.',
+    ],
   },
   {
     id: 'bijapur',
@@ -325,6 +427,13 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 520,
     rating: 4.4,
     gradient: 'from-slate-600 to-stone-800',
+    description:
+      'The Adil Shahi capital — home to Gol Gumbaz, whose dome is one of the largest in the world, and the whispering gallery.',
+    howToReach: '520 km — train to Vijayapura or drive.',
+    tips: [
+      'The whispering gallery is best with a small group.',
+      'Carry water; the Deccan sun is strong.',
+    ],
   },
   {
     id: 'sakleshpur',
@@ -344,6 +453,481 @@ export const DESTINATIONS: Destination[] = [
     distanceFromBengaluruKm: 220,
     rating: 4.5,
     gradient: 'from-green-600 to-teal-800',
+    description:
+      'A quieter Malnad escape — star-shaped fort, rainforest ghats, estate homestays and sunrise hikes.',
+    howToReach: '220 km — about 4 hours by road or train.',
+    tips: [
+      'Bisle Ghat is best at dawn.',
+      'Homestays beat hotels here.',
+    ],
+  },
+  {
+    id: 'shravanabelagola',
+    name: 'Shravanabelagola',
+    tagline: 'The 58-ft Bahubali statue above the town',
+    region: 'South Karnataka',
+    tags: ['spiritual', 'heritage'],
+    days: 1,
+    costPerDay: { budget: 1200, moderate: 2200, luxury: 4500 },
+    highlights: [
+      'Climb 600+ steps to the Bahubali statue',
+      'Chandragiri hill and Jain basadis',
+      'Views over the town and lakes from the top',
+      'Stories of the Mahamastakabhisheka festival',
+    ],
+    bestTime: 'Oct – Feb',
+    distanceFromBengaluruKm: 145,
+    rating: 4.7,
+    gradient: 'from-stone-500 to-amber-700',
+    description:
+      'One of Jainism’s holiest sites — a single-rock 58-foot statue of Bahubali standing atop Vindhyagiri hill.',
+    howToReach: '145 km — drive via Channarayapatna or train to Shravanabelagola.',
+    tips: [
+      'Climb early morning; the steps are climbed barefoot.',
+      'Combine with Belur–Halebidu in one route.',
+    ],
+  },
+  {
+    id: 'srirangapatna',
+    name: 'Srirangapatna',
+    tagline: 'Tipu Sultan’s island capital on the Cauvery',
+    region: 'South Karnataka',
+    tags: ['heritage', 'spiritual'],
+    days: 1,
+    costPerDay: { budget: 1200, moderate: 2300, luxury: 4600 },
+    highlights: [
+      'Ranganathaswamy Temple on the river island',
+      'Tipu’s Summer Palace (Daria Daulat Bagh)',
+      'Gumbaz mausoleum and its ivory doors',
+      'Sangam — the meeting of the Cauvery branches',
+    ],
+    bestTime: 'Oct – Feb',
+    distanceFromBengaluruKm: 125,
+    rating: 4.6,
+    gradient: 'from-teal-600 to-emerald-800',
+    description:
+      'An island town on the Cauvery where Tipu Sultan ruled — temples, a summer palace and the famous Gumbaz tombs.',
+    howToReach: '125 km — about 2.5 hours via the Mysuru road or by train.',
+    tips: [
+      'Visit before Mysuru in one trip.',
+      'Carry a hat; the island town is open and sunny.',
+    ],
+  },
+  {
+    id: 'somnathapura',
+    name: 'Somnathapura',
+    tagline: 'A star-shaped Hoysala jewel on the Cauvery',
+    region: 'South Karnataka',
+    tags: ['heritage'],
+    days: 1,
+    costPerDay: { budget: 1100, moderate: 2100, luxury: 4200 },
+    highlights: [
+      'Keshava Temple on its star-shaped platform',
+      'Hoysala friezes: elephants, lions and gods',
+      'Cauvery bank walk behind the temple',
+      'Guided stories of the sculptors',
+    ],
+    bestTime: 'Oct – Feb',
+    distanceFromBengaluruKm: 135,
+    rating: 4.7,
+    gradient: 'from-amber-600 to-stone-800',
+    description:
+      'A perfectly preserved 13th-century Hoysala temple on a star platform — quieter than Belur, just as beautiful.',
+    howToReach: '135 km — about 3 hours via Bannur road.',
+    tips: [
+      'Hire the ASI guide at the entrance.',
+      'No food stalls inside — carry water.',
+    ],
+  },
+  {
+    id: 'nandi',
+    name: 'Nandi Hills',
+    tagline: 'Sunrise above the clouds, an hour from Bengaluru',
+    region: 'South Karnataka',
+    tags: ['nature', 'adventure'],
+    days: 1,
+    costPerDay: { budget: 1300, moderate: 2400, luxury: 4800 },
+    highlights: [
+      'Sunrise at Tipu’s Drop above the clouds',
+      'Tipu’s Summer Palace and fort walls',
+      'Cycling up the hill road',
+      'Paragliding in season',
+    ],
+    bestTime: 'Sep – Feb',
+    distanceFromBengaluruKm: 60,
+    rating: 4.5,
+    gradient: 'from-sky-600 to-violet-800',
+    description:
+      'Bengaluru’s favourite sunrise — a hill fort above a sea of clouds, plus cycling, paragliding and old palaces.',
+    howToReach: '60 km — about 1.5 hours’ drive from Bengaluru.',
+    tips: [
+      'Reach before 6 AM for the sunrise crowd.',
+      'Weekends are packed — go on a weekday.',
+    ],
+  },
+  {
+    id: 'bylakuppe',
+    name: 'Bylakuppe (Golden Temple)',
+    tagline: 'Tibetan monasteries and golden Buddhas',
+    region: 'South Karnataka',
+    tags: ['spiritual'],
+    days: 1,
+    costPerDay: { budget: 1100, moderate: 2000, luxury: 4000 },
+    highlights: [
+      'Namdroling Monastery — the Golden Temple',
+      'Morning chanting sessions with monks',
+      'Tibetan market and momos',
+      'Sera monastery campus walk',
+    ],
+    bestTime: 'Oct – Mar',
+    distanceFromBengaluruKm: 225,
+    rating: 4.6,
+    gradient: 'from-yellow-600 to-amber-800',
+    description:
+      'India’s largest Tibetan settlement — golden temples, chanting monks and momos, near Coorg’s coffee country.',
+    howToReach: '225 km — about 5 hours via Kushalnagar.',
+    tips: [
+      'Morning prayers are open to visitors.',
+      'Dress modestly inside the monastery.',
+    ],
+  },
+  {
+    id: 'chitradurga',
+    name: 'Chitradurga Fort',
+    tagline: 'Seven rings of stone and the Obavva legend',
+    region: 'Central Karnataka',
+    tags: ['heritage', 'adventure'],
+    days: 1,
+    costPerDay: { budget: 1200, moderate: 2200, luxury: 4400 },
+    highlights: [
+      'Seven concentric fort walls and gateways',
+      'Onake Obavva’s legendary defence point',
+      'Secret passages and granaries',
+      'Sunset from the top of the fort',
+    ],
+    bestTime: 'Oct – Feb',
+    distanceFromBengaluruKm: 200,
+    rating: 4.6,
+    gradient: 'from-slate-700 to-stone-900',
+    description:
+      'A massive hill fort of seven stone rings — of palaces, secret passages and the legend of Obavva and her onake.',
+    howToReach: '200 km — about 3.5 hours via NH48 or by train.',
+    tips: [
+      'Wear sturdy shoes; the fort is vast.',
+      'Carry water — there is little shade inside.',
+    ],
+  },
+  {
+    id: 'bidar',
+    name: 'Bidar',
+    tagline: 'Bahmani forts, tombs and Bidri craft',
+    region: 'North Karnataka',
+    tags: ['heritage', 'city'],
+    days: 1,
+    costPerDay: { budget: 1200, moderate: 2300, luxury: 4600 },
+    highlights: [
+      'Bidar Fort and its royal palaces',
+      'Bahmani tombs at Ashtur',
+      'Bidriware craft workshops',
+      'Gurudwara Nanak Jhira Sahib',
+    ],
+    bestTime: 'Oct – Feb',
+    distanceFromBengaluruKm: 690,
+    rating: 4.5,
+    gradient: 'from-indigo-700 to-slate-900',
+    description:
+      'The Bahmani capital — a great fort, royal tombs and Bidriware, the black-metal inlay craft born here.',
+    howToReach: '690 km — train to Bidar, or fly to Hyderabad and drive.',
+    tips: [
+      'Bidriware makes a great souvenir.',
+      'Combine with Kalaburagi in one north trip.',
+    ],
+  },
+  {
+    id: 'kalaburagi',
+    name: 'Kalaburagi (Gulbarga)',
+    tagline: 'Sufi shrines and Deccan domes',
+    region: 'North Karnataka',
+    tags: ['heritage'],
+    days: 1,
+    costPerDay: { budget: 1100, moderate: 2100, luxury: 4200 },
+    highlights: [
+      'Gulbarga Fort and Jama Masjid',
+      'Khwaja Banda Nawaz Dargah',
+      'Sharana Basaveshwara Temple',
+      'Haft Gumbad tombs',
+    ],
+    bestTime: 'Oct – Feb',
+    distanceFromBengaluruKm: 620,
+    rating: 4.4,
+    gradient: 'from-rose-700 to-stone-900',
+    description:
+      'A Deccan city of Sufi shrines, fort walls and domed tombs — the spiritual heart of the north.',
+    howToReach: '620 km — train to Kalaburagi or drive.',
+    tips: [
+      'Dargah evenings are atmospheric.',
+      'Summer heat is intense — visit in winter.',
+    ],
+  },
+  {
+    id: 'shivanasamudra',
+    name: 'Shivanasamudra Falls',
+    tagline: 'Twin falls where Asia’s first hydel power was born',
+    region: 'South Karnataka',
+    tags: ['nature'],
+    days: 1,
+    costPerDay: { budget: 1200, moderate: 2300, luxury: 4600 },
+    highlights: [
+      'Gaganachukki Falls viewpoint',
+      'Bharachukki Falls viewpoint',
+      'Story of Asia’s first hydroelectric station',
+      'Coracle rides on the Cauvery (season permitting)',
+    ],
+    bestTime: 'Jul – Nov',
+    distanceFromBengaluruKm: 135,
+    rating: 4.5,
+    gradient: 'from-cyan-700 to-blue-900',
+    description:
+      'The Cauvery splits into twin waterfalls here — and powered Asia’s first hydroelectric station in 1902.',
+    howToReach: '135 km — about 3 hours via Kanakapura road.',
+    tips: [
+      'Best just after the monsoon.',
+      'Do not swim near the falls.',
+    ],
+  },
+  {
+    id: 'agumbe',
+    name: 'Agumbe',
+    tagline: 'The Cherrapunji of the South, king-cobra country',
+    region: 'Malnad',
+    tags: ['nature', 'adventure'],
+    days: 1,
+    costPerDay: { budget: 1300, moderate: 2500, luxury: 5000 },
+    highlights: [
+      'Agumbe sunset point over the ghats',
+      'Rainforest research station visit',
+      'Barkana Falls trek',
+      'Snake and frog spotting on night walks',
+    ],
+    bestTime: 'Jun – Nov',
+    distanceFromBengaluruKm: 355,
+    rating: 4.6,
+    gradient: 'from-green-800 to-emerald-950',
+    description:
+      'A rainforest village of record rainfall, famous sunsets, king cobras and the Malgudi Days connection.',
+    howToReach: '355 km — drive via Shivamogga or by bus.',
+    tips: [
+      'Leeches in monsoon — wear long socks.',
+      'Sunset point fills fast; arrive early.',
+    ],
+  },
+  {
+    id: 'kudremukh',
+    name: 'Kudremukh',
+    tagline: 'The horse-face peak and rolling shola grasslands',
+    region: 'Malnad',
+    tags: ['nature', 'adventure'],
+    days: 1,
+    costPerDay: { budget: 1400, moderate: 2700, luxury: 5400 },
+    highlights: [
+      'Kudremukh peak trek through shola grasslands',
+      'Hanuman Gundi Falls',
+      'Wildlife spotting on the trek',
+      'Homestay nights in the hills',
+    ],
+    bestTime: 'Oct – Feb',
+    distanceFromBengaluruKm: 330,
+    rating: 4.7,
+    gradient: 'from-emerald-800 to-teal-950',
+    description:
+      'A horse-face mountain rising over rolling grasslands — one of the Western Ghats’ classic treks.',
+    howToReach: '330 km — drive via Karkala; trek permits come from the forest department.',
+    tips: [
+      'Trek permits are mandatory — book ahead.',
+      'Start treks before 8 AM.',
+    ],
+  },
+  {
+    id: 'sringeri',
+    name: 'Sringeri',
+    tagline: 'Adi Shankara’s seat on the Tunga river',
+    region: 'Malnad',
+    tags: ['spiritual', 'nature'],
+    days: 1,
+    costPerDay: { budget: 1200, moderate: 2200, luxury: 4400 },
+    highlights: [
+      'Sharadamba Temple darshan',
+      'Vidyashankara Temple’s zodiac pillars',
+      'Evening aarti on the Tunga',
+      'Sringeri Mutt and museum',
+    ],
+    bestTime: 'Oct – Mar',
+    distanceFromBengaluruKm: 320,
+    rating: 4.7,
+    gradient: 'from-amber-700 to-orange-900',
+    description:
+      'Adi Shankaracharya’s first peetham on the banks of the Tunga — temples, river aarti and forested hills.',
+    howToReach: '320 km — drive via Chikmagalur or by bus.',
+    tips: [
+      'Evening aarti on the river is peaceful.',
+      'Combine with Agumbe in one Malnad loop.',
+    ],
+  },
+  {
+    id: 'dharmasthala',
+    name: 'Dharmasthala',
+    tagline: 'Where the annadana never stops',
+    region: 'Coast',
+    tags: ['spiritual'],
+    days: 1,
+    costPerDay: { budget: 1200, moderate: 2200, luxury: 4400 },
+    highlights: [
+      'Manjunatha Temple darshan',
+      'Annappa Betta and the Bahubali statue',
+      'Free annadana meal for pilgrims',
+      'Manjusha Museum of temple artefacts',
+    ],
+    bestTime: 'Oct – Mar',
+    distanceFromBengaluruKm: 375,
+    rating: 4.7,
+    gradient: 'from-yellow-700 to-amber-900',
+    description:
+      'A temple town run on charity — lakhs of pilgrims, free meals all day and the Manjunatha shrine.',
+    howToReach: '375 km — bus or train to Mangaluru, then road.',
+    tips: [
+      'Free meals run all day for pilgrims.',
+      'Dress traditionally for temple entry.',
+    ],
+  },
+  {
+    id: 'yana',
+    name: 'Yana Caves',
+    tagline: 'Black rock towers rising out of the forest',
+    region: 'Coast',
+    tags: ['nature', 'adventure'],
+    days: 1,
+    costPerDay: { budget: 1300, moderate: 2500, luxury: 5000 },
+    highlights: [
+      'Bhairaveshwara and Mohini rock formations',
+      'Forest trek to the rocks',
+      'Vibhuti Falls nearby',
+      'Sahasralinga riverbed carvings',
+    ],
+    bestTime: 'Oct – Mar',
+    distanceFromBengaluruKm: 430,
+    rating: 4.6,
+    gradient: 'from-lime-700 to-green-900',
+    description:
+      'Two giant black limestone towers in the forest, sacred to Shiva — a short trek from the road through thick green.',
+    howToReach: '430 km — drive via Sirsi or Kumta.',
+    tips: [
+      'The last stretch is a forest walk — wear shoes.',
+      'Monsoon makes the trail slippery.',
+    ],
+  },
+  {
+    id: 'karwar',
+    name: 'Karwar',
+    tagline: 'Tagore’s beach town on the Kali river',
+    region: 'Coast',
+    tags: ['beaches', 'nature'],
+    days: 1,
+    costPerDay: { budget: 1400, moderate: 2600, luxury: 5200 },
+    highlights: [
+      'Rabindranath Tagore Beach',
+      'Devbagh Beach and island trips',
+      'INS Chapal Warship Museum',
+      'Kali river bridge sunset',
+    ],
+    bestTime: 'Oct – Mar',
+    distanceFromBengaluruKm: 520,
+    rating: 4.5,
+    gradient: 'from-sky-700 to-blue-900',
+    description:
+      'A quiet port town where the Kali meets the sea — the beach Tagore called the Kashmir of Karnataka.',
+    howToReach: '520 km — train to Karwar or drive via the Goa border.',
+    tips: [
+      'Seafood at the harbour is a must.',
+      'Devbagh is quieter than the main beach.',
+    ],
+  },
+  {
+    id: 'maravanthe',
+    name: 'Maravanthe',
+    tagline: 'Sea on one side, river on the other',
+    region: 'Coast',
+    tags: ['beaches'],
+    days: 1,
+    costPerDay: { budget: 1300, moderate: 2500, luxury: 5000 },
+    highlights: [
+      'The highway beach with sea and river side by side',
+      'Sunset drive on NH66',
+      'Kodi Beach walk',
+      'Fishing village visit',
+    ],
+    bestTime: 'Oct – Mar',
+    distanceFromBengaluruKm: 445,
+    rating: 4.6,
+    gradient: 'from-cyan-600 to-teal-800',
+    description:
+      'A rare beach where the Arabian Sea runs along one side of the highway and the Souparnika river along the other.',
+    howToReach: '445 km — drive on NH66 or bus to Kundapura.',
+    tips: [
+      'The sunset from the highway stretch is famous.',
+      'Swimming currents can be strong — ask locals.',
+    ],
+  },
+  {
+    id: 'melukote',
+    name: 'Melukote',
+    tagline: 'Temples on the hill and puliyogare below',
+    region: 'South Karnataka',
+    tags: ['spiritual', 'heritage'],
+    days: 1,
+    costPerDay: { budget: 1100, moderate: 2000, luxury: 4000 },
+    highlights: [
+      'Cheluvanarayana Swamy Temple',
+      'Yoga Narasimha hill climb',
+      'Akka Thangi Kolam twin ponds',
+      'Puliyogare in the temple town',
+    ],
+    bestTime: 'Oct – Feb',
+    distanceFromBengaluruKm: 145,
+    rating: 4.6,
+    gradient: 'from-orange-700 to-amber-900',
+    description:
+      'A hill temple town of Ramanuja’s tradition — climb to Yoga Narasimha, then eat puliyogare in the old streets.',
+    howToReach: '145 km — about 3 hours via Pandavapura road.',
+    tips: [
+      'Climb the hill before noon.',
+      'Try the temple town’s puliyogare.',
+    ],
+  },
+  {
+    id: 'brhills',
+    name: 'BR Hills',
+    tagline: 'Tiger reserve of the Biligiri hills',
+    region: 'South Karnataka',
+    tags: ['wildlife', 'nature'],
+    days: 1,
+    costPerDay: { budget: 1800, moderate: 3500, luxury: 7000 },
+    highlights: [
+      'BR Hills Tiger Reserve safari',
+      'Biligiri Rangaswamy Temple',
+      'Soliga tribal village visit',
+      'Birdwatching in the shola forests',
+    ],
+    bestTime: 'Oct – May',
+    distanceFromBengaluruKm: 185,
+    rating: 4.6,
+    gradient: 'from-green-800 to-lime-900',
+    description:
+      'A bridge between the Eastern and Western Ghats — tigers, elephants, Soliga culture and a hilltop temple.',
+    howToReach: '185 km — about 4 hours via Chamarajanagar.',
+    tips: [
+      'Safaris need advance booking.',
+      'Carry warm layers for early safaris.',
+    ],
   },
 ];
 

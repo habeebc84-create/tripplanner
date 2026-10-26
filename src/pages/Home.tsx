@@ -75,7 +75,7 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
           </button>
           <div className="animate-fade-up-delay mt-8 flex flex-wrap justify-center gap-6 text-sm text-stone-600 dark:text-stone-400">
             <span className="flex items-center gap-2">
-              <MapPin size={16} className="text-orange-600" /> 16 {t('statDest')}
+              <MapPin size={16} className="text-orange-600" /> {DESTINATIONS.length} {t('statDest')}
             </span>
             <span className="flex items-center gap-2">
               <CalendarDays size={16} className="text-orange-600" /> 1–7 {t('statDays')}
