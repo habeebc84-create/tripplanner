@@ -64,6 +64,13 @@ Built for the **Travel & Tourism** hackathon track.
   for Hampi, Mysuru, Coorg, Kabini, Gokarna, Chikmagalur (plus Belur and
   Shravanabelagola as backups), and tapping one opens that place's full
   detail sheet.
+- **Every place has a photo** — all 34 destinations in Explore Karnataka now
+  show a verified real photo on their card, with the name overlaid, so every
+  place is recognisable at a glance. Photos that fail to load hide
+  themselves and the card falls back to its colour header.
+- **Floating round Find button** — after entering the website, a round
+  orange search button floats at the bottom-right of every app screen and
+  jumps straight to Explore Karnataka to find all places.
 - **Bus & train travel per place** — every one of the 34 destinations now
   carries bus guidance (KSRTC from Majestic) and train guidance (station or
   nearest railhead), shown in the place detail with live transit-direction

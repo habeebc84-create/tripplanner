@@ -71,6 +71,7 @@ const en: Dict = {
   mapNote:
     'The map loads live from Google. Bus numbers and train times change — open directions for the live numbers.',
   travelTitle: 'Bus & train travel',
+  findPlaces: 'Find all places',
   liveTrains: 'Live trains from City station',
   travelNote:
     'Routes and timings change — live directions show the current buses and trains.',
@@ -201,6 +202,7 @@ const hi: Dict = {
   mapNote:
     'मानचित्र Google से लाइव लोड होता है। बस नंबर और ट्रेन का समय बदलता रहता है — लाइव नंबरों के लिए दिशा-निर्देश खोलें।',
   travelTitle: 'बस और ट्रेन यात्रा',
+  findPlaces: 'सभी स्थान खोजें',
   liveTrains: 'सिटी स्टेशन से लाइव ट्रेनें',
   travelNote:
     'रूट और समय बदलते रहते हैं — लाइव दिशा-निर्देश वर्तमान बसें और ट्रेनें दिखाते हैं।',
@@ -331,6 +333,7 @@ const kn: Dict = {
   mapNote:
     'ನಕ್ಷೆ Google ನಿಂದ ಲೈವ್ ಲೋಡ್ ಆಗುತ್ತದೆ. ಬಸ್ ಸಂಖ್ಯೆಗಳು ಮತ್ತು ರೈಲು ಸಮಯ ಬದಲಾಗುತ್ತದೆ — ಲೈವ್ ಸಂಖ್ಯೆಗಳಿಗಾಗಿ ನಿರ್ದೇಶನಗಳನ್ನು ತೆರೆಯಿರಿ.',
   travelTitle: 'ಬಸ್ ಮತ್ತು ರೈಲು ಪ್ರಯಾಣ',
+  findPlaces: 'ಎಲ್ಲಾ ಸ್ಥಳಗಳನ್ನು ಹುಡುಕಿ',
   liveTrains: 'ಸಿಟಿ ನಿಲ್ದಾಣದಿಂದ ಲೈವ್ ರೈಲುಗಳು',
   travelNote:
     'ಮಾರ್ಗಗಳು ಮತ್ತು ಸಮಯ ಬದಲಾಗುತ್ತದೆ — ಲೈವ್ ನಿರ್ದೇಶನಗಳು ಪ್ರಸ್ತುತ ಬಸ್‌ಗಳು ಮತ್ತು ರೈಲುಗಳನ್ನು ತೋರಿಸುತ್ತವೆ.',

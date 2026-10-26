@@ -763,21 +763,50 @@ export default function App() {
               onClick={() => setSelectedPlace(d)}
               className="cursor-pointer overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-stone-800 dark:bg-stone-900"
             >
-              <div className={`relative bg-gradient-to-br ${d.gradient} px-5 py-6 text-white`}>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleFavourite(d.id);
-                  }}
-                  aria-label="Favourite"
-                  className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-black/25 text-white hover:bg-black/40"
-                >
-                  <Heart size={16} fill={favourites.includes(d.id) ? '#fff' : 'none'} />
-                </button>
-                <p className="text-xs font-bold tracking-wide uppercase opacity-80">{d.region}</p>
-                <h3 className="mt-1 text-2xl font-extrabold">{d.name}</h3>
-                <p className="mt-1 text-sm opacity-90">{d.tagline}</p>
-              </div>
+              {d.image ? (
+                <div className="relative">
+                  <img
+                    src={d.image}
+                    alt={d.name}
+                    loading="lazy"
+                    className="h-44 w-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent px-5 pt-12 pb-4 text-white">
+                    <p className="text-xs font-bold tracking-wide uppercase opacity-80">{d.region}</p>
+                    <h3 className="mt-1 text-2xl font-extrabold">{d.name}</h3>
+                    <p className="mt-1 text-sm opacity-90">{d.tagline}</p>
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavourite(d.id);
+                    }}
+                    aria-label="Favourite"
+                    className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-black/25 text-white hover:bg-black/40"
+                  >
+                    <Heart size={16} fill={favourites.includes(d.id) ? '#fff' : 'none'} />
+                  </button>
+                </div>
+              ) : (
+                <div className={`relative bg-gradient-to-br ${d.gradient} px-5 py-6 text-white`}>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavourite(d.id);
+                    }}
+                    aria-label="Favourite"
+                    className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-black/25 text-white hover:bg-black/40"
+                  >
+                    <Heart size={16} fill={favourites.includes(d.id) ? '#fff' : 'none'} />
+                  </button>
+                  <p className="text-xs font-bold tracking-wide uppercase opacity-80">{d.region}</p>
+                  <h3 className="mt-1 text-2xl font-extrabold">{d.name}</h3>
+                  <p className="mt-1 text-sm opacity-90">{d.tagline}</p>
+                </div>
+              )}
               <div className="p-5">
                 <div className="flex flex-wrap gap-1.5">
                   {d.tags.map((tag) => (
@@ -887,6 +916,16 @@ export default function App() {
           onPlanAround={planAround}
         />
       )}
+
+      {/* Floating round button to find all places */}
+      <button
+        onClick={() => document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' })}
+        title={t('findPlaces')}
+        aria-label={t('findPlaces')}
+        className="fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-orange-600 text-white shadow-lg shadow-orange-600/30 transition hover:scale-110 hover:bg-orange-700"
+      >
+        <Search size={22} />
+      </button>
     </div>
   );
 }
