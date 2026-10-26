@@ -1,11 +1,13 @@
-import { CalendarDays, Car, Heart, MapPin, Route, Star, Wallet, X } from 'lucide-react';
-import type { Destination } from '../data/destinations';
+import { CalendarDays, Car, Heart, MapPin, Route, Star, Wallet, X, BedDouble, ExternalLink } from 'lucide-react';
+import type { BudgetTier, Destination } from '../data/destinations';
 import { formatINR } from '../lib/planner';
-import { INTEREST_LABELS_I18N, tr, type Lang } from '../lib/i18n';
+import { BUDGET_LABELS_I18N, INTEREST_LABELS_I18N, tr, type Lang } from '../lib/i18n';
+import { hotelsSearchUrl, mapsSearchUrl } from '../lib/maps';
 
 interface PlaceDetailProps {
   place: Destination;
   lang: Lang;
+  budget: BudgetTier;
   isFavourite: boolean;
   onToggleFavourite: (id: string) => void;
   onClose: () => void;
@@ -15,6 +17,7 @@ interface PlaceDetailProps {
 export default function PlaceDetail({
   place,
   lang,
+  budget,
   isFavourite,
   onToggleFavourite,
   onClose,
@@ -86,6 +89,35 @@ export default function PlaceDetail({
               <Car size={18} className="text-orange-600" /> {t('howToReach')}
             </h3>
             <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">{place.howToReach}</p>
+          </div>
+
+          <div>
+            <h3 className="flex items-center gap-2 text-lg font-bold">
+              <BedDouble size={18} className="text-orange-600" /> {t('stayTitle')}
+            </h3>
+            <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">
+              {BUDGET_LABELS_I18N[lang][budget]} · {t('stayPerNight')}:{' '}
+              {formatINR(Math.round(place.costPerDay[budget] * 0.45))}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <a
+                href={hotelsSearchUrl(place.name)}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-700"
+              >
+                <ExternalLink size={14} /> {t('hotelsSearch')}
+              </a>
+              <a
+                href={mapsSearchUrl(place.name)}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 rounded-full border border-stone-300 px-4 py-2 text-sm font-semibold hover:border-orange-400 dark:border-stone-700"
+              >
+                <MapPin size={14} /> {t('mapsOpen')}
+              </a>
+            </div>
+            <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">{t('stayNote')}</p>
           </div>
 
           <div>

@@ -7,6 +7,7 @@ export interface PdfMeta {
   budget: BudgetTier;
   pace: Pace;
   group: Group;
+  startCity: string;
 }
 
 /**
@@ -72,9 +73,9 @@ export function exportItineraryPdf(itinerary: Itinerary, meta: PdfMeta) {
     if (d.travelFrom) {
       const leg =
         d.travelKm != null && d.travelKm > 0
-          ? `Travel: from Bengaluru · ${d.travelKm} km`
-          : d.travelFrom === 'Bengaluru'
-            ? 'Travel: starting from Bengaluru'
+          ? `Travel: from ${d.travelFrom} · ${d.travelKm} km`
+          : d.travelFrom === meta.startCity
+            ? `Travel: starting from ${d.travelFrom}`
             : `Travel: ${d.travelFrom} -> ${d.destination.name}`;
       line(leg, 10);
     }

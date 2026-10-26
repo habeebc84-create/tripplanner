@@ -28,6 +28,7 @@ import {
   Waves,
   Shuffle,
   Check,
+  Pin,
 } from 'lucide-react';
 import {
   DESTINATIONS,
@@ -39,6 +40,7 @@ import {
   type Pace,
 } from './data/destinations';
 import { formatINR, generateItinerary } from './lib/planner';
+import { mapsDirectionsUrl } from './lib/maps';
 import Logo from './components/Logo';
 import PlaceDetail from './components/PlaceDetail';
 import HomePage from './pages/Home';
@@ -84,6 +86,8 @@ export default function App() {
   const [pace, setPace] = useState<Pace>('balanced');
   const [group, setGroup] = useState<Group>('couple');
   const [seed, setSeed] = useState(1);
+  const [startCity, setStartCity] = useState('Bengaluru');
+  const [pinnedId, setPinnedId] = useState<string | null>(null);
   const [generated, setGenerated] = useState(false);
   const [copied, setCopied] = useState(false);
   const [filter, setFilter] = useState<Interest | 'all'>('all');
@@ -137,6 +141,7 @@ export default function App() {
     setFavourites((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
   const planAround = (place: Destination) => {
+    setPinnedId(place.id);
     setInterests(place.tags);
     setDays(Math.max(2, place.days));
     setGenerated(true);
@@ -146,8 +151,18 @@ export default function App() {
   };
 
   const itinerary = useMemo(
-    () => generateItinerary({ interests, days, budget, pace, group, seed }),
-    [interests, days, budget, pace, group, seed],
+    () =>
+      generateItinerary({
+        interests,
+        days,
+        budget,
+        pace,
+        group,
+        seed,
+        startCity,
+        pinned: pinnedId ? DESTINATIONS.find((d) => d.id === pinnedId) : undefined,
+      }),
+    [interests, days, budget, pace, group, seed, startCity, pinnedId],
   );
 
   const toggleInterest = (tag: Interest) =>
@@ -396,6 +411,34 @@ export default function App() {
             </div>
           </div>
 
+          <div className="mt-6 flex flex-wrap items-end gap-4">
+            <div>
+              <label className="mb-2 flex items-center gap-2 text-sm font-semibold">
+                <MapPin size={15} /> {t('startCity')}
+              </label>
+              <select
+                value={startCity}
+                onChange={(e) => setStartCity(e.target.value)}
+                className="rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-medium dark:border-stone-700 dark:bg-stone-900"
+              >
+                {['Bengaluru', 'Mysuru', 'Mangaluru', 'Hubballi', 'Belagavi'].map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
+            </div>
+            {pinnedId && (
+              <span className="flex items-center gap-2 rounded-full bg-orange-100 px-3 py-2 text-sm font-semibold text-orange-800 dark:bg-orange-900/40 dark:text-orange-200">
+                <Pin size={14} /> {t('pinned')}: {DESTINATIONS.find((d) => d.id === pinnedId)?.name}
+                <button
+                  onClick={() => setPinnedId(null)}
+                  className="ml-1 rounded-full bg-orange-600 px-2 py-0.5 text-xs font-bold text-white"
+                >
+                  {t('clear')}
+                </button>
+              </span>
+            )}
+          </div>
+
           <button
             onClick={() => setGenerated(true)}
             className="mt-7 flex w-full items-center justify-center gap-2 rounded-2xl bg-orange-600 px-6 py-3.5 text-base font-bold text-white transition hover:scale-[1.01] hover:bg-orange-700 sm:w-auto"
@@ -437,7 +480,7 @@ export default function App() {
                   <button
                     onClick={async () => {
                       const { exportItineraryPdf } = await import('./lib/exportPdf');
-                      exportItineraryPdf(itinerary, { days, budget, pace, group });
+                      exportItineraryPdf(itinerary, { days, budget, pace, group, startCity });
                     }}
                     className="flex items-center gap-2 rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-700"
                   >
@@ -485,11 +528,13 @@ export default function App() {
                       <p className="flex items-center gap-2 text-xs font-semibold text-stone-500 uppercase dark:text-stone-400">
                         <Gauge size={14} /> {t('matchLabel')}
                       </p>
-                      <p className="mt-1 text-2xl font-extrabold">{itinerary.matchScore}%</p>
+                      <p className="mt-1 text-2xl font-extrabold">
+                        {interests.length === 0 ? t('topRated') : `${itinerary.matchScore}%`}
+                      </p>
                       <div className="mt-2 h-2 overflow-hidden rounded-full bg-stone-200 dark:bg-stone-700">
                         <div
                           className="animate-grow-bar h-full rounded-full bg-gradient-to-r from-orange-500 to-rose-500"
-                          style={{ width: `${itinerary.matchScore}%` }}
+                          style={{ width: `${interests.length === 0 ? 100 : itinerary.matchScore}%` }}
                         />
                       </div>
                       <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">{t('matchWith')}</p>
@@ -600,11 +645,19 @@ export default function App() {
                               <span>
                                 <b>
                                   {d.travelKm != null && d.travelKm > 0
-                                    ? `${t('travelFrom')} · ${d.travelKm} km`
-                                    : d.travelFrom === 'Bengaluru'
-                                      ? t('travelFrom')
+                                    ? `${t('travelStart')} ${d.travelFrom} · ${d.travelKm} km`
+                                    : d.travelFrom === startCity
+                                      ? `${t('travelStart')} ${d.travelFrom}`
                                       : `${t('travelBetween')}: ${d.travelFrom} → ${d.destination.name}`}
-                                </b>
+                                </b>{' '}
+                                <a
+                                  href={mapsDirectionsUrl(d.travelFrom, d.destination.name)}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="font-semibold text-orange-600 underline"
+                                >
+                                  {t('directions')}
+                                </a>
                               </span>
                             </li>
                           )}
@@ -812,6 +865,7 @@ export default function App() {
         <PlaceDetail
           place={selectedPlace}
           lang={lang}
+          budget={budget}
           isFavourite={favourites.includes(selectedPlace.id)}
           onToggleFavourite={toggleFavourite}
           onClose={() => setSelectedPlace(null)}

@@ -16,6 +16,10 @@ export interface PlannerInput {
   group: Group;
   /** A small seed so "Regenerate" produces a different-but-valid plan. */
   seed: number;
+  /** City the trip starts from (default Bengaluru). */
+  startCity: string;
+  /** Destination that must appear in the plan (from "Plan around this place"). */
+  pinned?: Destination;
 }
 
 export interface DayPlan {
@@ -83,6 +87,8 @@ function buildDayPlans(
   pace: Pace,
   budget: BudgetTier,
   travellers: number,
+  startCity: string,
+  transportPerDay: number,
 ): DayPlan[] {
   const plans: DayPlan[] = [];
   let day = 1;
@@ -101,9 +107,11 @@ function buildDayPlans(
           : GENERIC_EVENINGS[(day + stop.destination.id.length) % GENERIC_EVENINGS.length];
       // Pin-to-pin leg: only the first day of a stop involves travel.
       const travelFrom =
-        i === 0 ? (si === 0 ? 'Bengaluru' : stops[si - 1].destination.name) : null;
+        i === 0 ? (si === 0 ? startCity : stops[si - 1].destination.name) : null;
       const travelKm =
-        i === 0 && si === 0 ? stop.destination.distanceFromBengaluruKm : null;
+        i === 0 && si === 0 && startCity === 'Bengaluru'
+          ? stop.destination.distanceFromBengaluruKm
+          : null;
       plans.push({
         day: day++,
         destination: stop.destination,
@@ -112,7 +120,12 @@ function buildDayPlans(
         evening,
         travelFrom,
         travelKm,
-        dayCost: Math.round(stop.destination.costPerDay[budget] * travellers),
+        // Consistent with the dashboard breakdown: 85% of the daily rate
+        // (stay+food+activities) plus this day's share of transport, so the
+        // day costs reconcile with the estimated total (within rounding).
+        dayCost: Math.round(
+          stop.destination.costPerDay[budget] * 0.85 * travellers + transportPerDay,
+        ),
       });
     }
   }
@@ -120,7 +133,7 @@ function buildDayPlans(
 }
 
 export function generateItinerary(input: PlannerInput): Itinerary {
-  const { interests, days, budget, pace, group, seed } = input;
+  const { interests, days, budget, pace, group, seed, startCity, pinned } = input;
   const travellers = GROUP_SIZE[group];
 
   // Rank destinations by interest match, then greedily fill the day budget,
@@ -135,8 +148,17 @@ export function generateItinerary(input: PlannerInput): Itinerary {
   const pickedRegions = new Set<string>();
   let remaining = days;
 
+  // A pinned place is guaranteed first, so "Plan around this place" can
+  // never silently drop the place the traveller asked for.
+  if (pinned) {
+    const useDays = Math.min(pinned.days, remaining);
+    stops.push({ destination: pinned, days: useDays });
+    pickedRegions.add(pinned.region);
+    remaining -= useDays;
+  }
+
   // Re-rank on the fly so region clustering actually applies.
-  const pool = [...ranked];
+  const pool = ranked.filter((d) => d.id !== pinned?.id);
   while (remaining > 0 && pool.length > 0) {
     pool.sort(
       (a, b) =>
@@ -150,10 +172,9 @@ export function generateItinerary(input: PlannerInput): Itinerary {
     remaining -= useDays;
   }
 
-  const dayPlans = buildDayPlans(stops, pace, budget, travellers);
-
   // Cost model (indicative, per person): stay ~45%, food ~25%, activities ~15%,
-  // plus intercity transport hops between stops.
+  // plus intercity transport hops between stops. The breakdown is the source
+  // of truth; day costs are derived from it so everything adds up.
   let stay = 0;
   let food = 0;
   let activities = 0;
@@ -179,6 +200,16 @@ export function generateItinerary(input: PlannerInput): Itinerary {
     // Kept as the sum of the parts so the breakdown always adds up.
     total: stayTotal + foodTotal + transportTotal + activitiesTotal,
   };
+
+  const totalDays = stops.reduce((sum, s) => sum + s.days, 0) || 1;
+  const dayPlans = buildDayPlans(
+    stops,
+    pace,
+    budget,
+    travellers,
+    startCity,
+    transportTotal / totalDays,
+  );
 
   const matchedTags = new Set<string>();
   for (const stop of stops) {

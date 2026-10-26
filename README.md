@@ -29,6 +29,29 @@ Built for the **Travel & Tourism** hackathon track.
   (English; amounts shown as Rs. for font compatibility).
 - **About section** — what the planner is, its coverage (34 destinations,
   5 regions, 3 languages), and its no-sign-up, on-device privacy promise.
+- **Google Maps everywhere** — every place opens in Google Maps, every travel
+  leg in the day plan links to turn-by-turn directions, and every place links
+  to live hotel search on Google.
+- **Budget-based stays** — each place shows a stay budget per person per
+  night for the trip's own budget tier. Prices and availability open live on
+  Google: the planner never invents hotel names or rates.
+- **Starting city** — trips no longer assume Bengaluru; pick Bengaluru,
+  Mysuru, Mangaluru, Hubballi or Belagavi and the first travel leg follows it.
+- **Pinned places guaranteed** — "Plan a trip around this place" now pins
+  that place into the plan, so it can never be silently dropped.
+- **Honest costs** — day costs are derived from the same breakdown as the
+  dashboard total, so they reconcile (within rounding) instead of disagreeing.
+
+## Scale: built for 10 lakh searches a day
+
+There is no backend to overload. The whole app is a static site: the planner
+runs in milliseconds inside the visitor's browser, there are no API calls per
+search, no database, and no images to serve (all visuals are CSS gradients).
+On Vercel/Netlify the files sit on a global CDN with immutable caching for
+hashed assets (`vercel.json`), and the PDF engine loads only when Export PDF
+is clicked. 10 lakh searches a day is about 12 a second on average — trivial
+for a CDN — and traffic costs nothing per search because there is no server
+work per visitor.
 - **Destination explorer** — 34 famous places across Karnataka (Mysuru, Hampi, Coorg, Gokarna,
   Chikmagalur, Badami, Udupi, Kabini, Jog Falls, Dandeli, Murudeshwar,
   Belur–Halebidu, Bandipur, Vijayapura, Sakleshpur, Bengaluru, Shravanabelagola,
