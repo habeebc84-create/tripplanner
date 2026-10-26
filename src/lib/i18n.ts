@@ -78,7 +78,7 @@ const en: Dict = {
     'Days are split across stops with morning, afternoon and evening activities, plus a cost breakdown split into stay, food, transport and activities.',
   disclaimer:
     'Costs are indicative estimates for planning, not live prices. Verify safari, stay and transport bookings before you travel.',
-  footer: 'built for the Travel & Tourism hackathon track.',
+  footer: 'AI-powered travel planner for Karnataka.',
   dashboardTitle: 'Trip dashboard',
   dashboardSub: 'Tap the tabs to explore your route, budget and days.',
   tabOverview: 'Overview',
@@ -163,7 +163,7 @@ const hi: Dict = {
     'दिन ठहरावों में बाँट दिए जाते हैं — सुबह, दोपहर और शाम की गतिविधियों के साथ, और ठहरने, भोजन, परिवहन व गतिविधियों में बँटा लागत विवरण भी मिलता है।',
   disclaimer:
     'लागत योजना के लिए संकेतात्मक अनुमान हैं, लाइव कीमतें नहीं। यात्रा से पहले सफारी, ठहरने और परिवहन की बुकिंग की पुष्टि करें।',
-  footer: 'ट्रैवल और टूरिज्म हैकथॉन ट्रैक के लिए निर्मित।',
+  footer: 'कर्नाटक के लिए एआई-संचालित यात्रा योजनाकार।',
   dashboardTitle: 'यात्रा डैशबोर्ड',
   dashboardSub: 'अपना मार्ग, बजट और दिन देखने के लिए टैब पर टैप करें।',
   tabOverview: 'अवलोकन',
@@ -248,7 +248,7 @@ const kn: Dict = {
     'ದಿನಗಳನ್ನು ತಾಣಗಳ ನಡುವೆ ಹಂಚಲಾಗುತ್ತದೆ — ಬೆಳಿಗ್ಗೆ, ಮಧ್ಯಾಹ್ನ ಮತ್ತು ಸಂಜೆ ಚಟುವಟಿಕೆಗಳೊಂದಿಗೆ, ಜೊತೆಗೆ ವಸತಿ, ಆಹಾರ, ಸಾರಿಗೆ ಮತ್ತು ಚಟುವಟಿಕೆಗಳಾಗಿ ವಿಂಗಡಿಸಲಾದ ವೆಚ್ಚದ ವಿವರ.',
   disclaimer:
     'ವೆಚ್ಚಗಳು ಯೋಜನೆಗಾಗಿ ಸೂಚಕ ಅಂದಾಜುಗಳು, ಲೈವ್ ಬೆಲೆಗಳಲ್ಲ. ಪ್ರಯಾಣಿಸುವ ಮೊದಲು ಸಫಾರಿ, ವಸತಿ ಮತ್ತು ಸಾರಿಗೆ ಬುಕಿಂಗ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.',
-  footer: 'ಟ್ರಾವೆಲ್ ಮತ್ತು ಟೂರಿಸಂ ಹ್ಯಾಕಥಾನ್ ಟ್ರ್ಯಾಕ್‌ಗಾಗಿ ನಿರ್ಮಿಸಲಾಗಿದೆ.',
+  footer: 'ಕರ್ನಾಟಕಕ್ಕಾಗಿ ಎಐ ಚಾಲಿತ ಪ್ರವಾಸ ಯೋಜಕ.',
   dashboardTitle: 'ಪ್ರವಾಸ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
   dashboardSub: 'ನಿಮ್ಮ ಮಾರ್ಗ, ಬಜೆಟ್ ಮತ್ತು ದಿನಗಳನ್ನು ನೋಡಲು ಟ್ಯಾಬ್‌ಗಳನ್ನು ಒತ್ತಿ.',
   tabOverview: 'ಅವಲೋಕನ',

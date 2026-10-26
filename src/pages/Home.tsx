@@ -16,7 +16,7 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
   const topPicks = [...DESTINATIONS].sort((a, b) => b.rating - a.rating).slice(0, 6);
 
   return (
-    <div className="min-h-screen bg-[#faf7f2] text-stone-900 dark:bg-stone-950 dark:text-stone-100">
+    <div className="min-h-screen bg-[#faf7f2] text-stone-900 transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100">
       {/* Top bar */}
       <header className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <span className="flex items-center gap-2">
@@ -122,7 +122,7 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
         </div>
       </section>
 
-      <footer className="border-t border-stone-200 py-6 text-center text-sm text-stone-500 dark:border-stone-800 dark:text-stone-400">
+      <footer className="border-t border-stone-200 py-6 text-center text-sm text-stone-500 transition-colors duration-300 dark:border-stone-800 dark:text-stone-400">
         Karnataka Yatra AI — {t('footer')}
       </footer>
     </div>

@@ -33,17 +33,6 @@ export interface Destination {
   tips: string[];
 }
 
-export const INTEREST_LABELS: Record<Interest, string> = {
-  heritage: 'Heritage',
-  nature: 'Nature',
-  beaches: 'Beaches',
-  adventure: 'Adventure',
-  wildlife: 'Wildlife',
-  food: 'Food',
-  spiritual: 'Spiritual',
-  city: 'City Life',
-};
-
 export const DESTINATIONS: Destination[] = [
   {
     id: 'mysuru',
@@ -930,18 +919,6 @@ export const DESTINATIONS: Destination[] = [
     ],
   },
 ];
-
-export const BUDGET_LABELS: Record<BudgetTier, string> = {
-  budget: 'Budget',
-  moderate: 'Moderate',
-  luxury: 'Luxury',
-};
-
-export const PACE_LABELS: Record<Pace, string> = {
-  relaxed: 'Relaxed',
-  balanced: 'Balanced',
-  packed: 'Packed',
-};
 
 export const GROUP_SIZE: Record<Group, number> = {
   solo: 1,

@@ -29,7 +29,7 @@ export default function PlaceDetail({
       onClick={onClose}
     >
       <div
-        className="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl bg-white shadow-2xl sm:rounded-3xl dark:bg-stone-900"
+        className="animate-fade-up max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl bg-white shadow-2xl transition-colors duration-300 sm:rounded-3xl dark:bg-stone-900"
         onClick={(e) => e.stopPropagation()}
       >
         <div className={`relative bg-gradient-to-br ${place.gradient} px-6 py-8 text-white`}>

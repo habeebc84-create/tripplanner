@@ -211,7 +211,7 @@ export default function App() {
     { label: t('transport'), value: itinerary.cost.transport, color: '#0284c7' },
     { label: t('activities'), value: itinerary.cost.activities, color: '#7c3aed' },
   ];
-  const donut = useMemo(() => {
+  const donut = (() => {
     let acc = 0;
     const stops = budgetParts.map((p) => {
       const pct = itinerary.cost.total > 0 ? (p.value / itinerary.cost.total) * 100 : 0;
@@ -220,7 +220,7 @@ export default function App() {
       return seg;
     });
     return `conic-gradient(${stops.join(', ')})`;
-  }, [itinerary.cost.total]); // eslint-disable-line react-hooks/exhaustive-deps
+  })();
 
 
   if (view === 'home') {
@@ -236,9 +236,9 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#faf7f2] text-stone-900 dark:bg-stone-950 dark:text-stone-100">
+    <div className="min-h-screen bg-[#faf7f2] text-stone-900 transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100">
       {/* Header */}
-      <header className="sticky top-0 z-20 border-b border-stone-200 bg-[#faf7f2]/90 backdrop-blur dark:border-stone-800 dark:bg-stone-950/90">
+      <header className="sticky top-0 z-20 border-b border-stone-200 bg-[#faf7f2]/90 backdrop-blur transition-colors duration-300 dark:border-stone-800 dark:bg-stone-950/90">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-3">
           <button onClick={() => setView('home')} className="flex items-center gap-2">
             <Logo size={36} />
@@ -286,8 +286,8 @@ export default function App() {
       </header>
 
       {/* Planner */}
-      <section id="planner" className="mx-auto max-w-6xl scroll-mt-20 px-4 pt-10 pb-14">
-        <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md dark:border-stone-800 dark:bg-stone-900 sm:p-7">
+      <section id="planner" className="animate-fade-up mx-auto max-w-6xl scroll-mt-20 px-4 pt-10 pb-14">
+        <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm transition duration-300 hover:shadow-md dark:border-stone-800 dark:bg-stone-900 sm:p-7">
           <h2 className="text-2xl font-bold">{t('plannerTitle')}</h2>
           <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{t('plannerSub')}</p>
 
@@ -741,7 +741,7 @@ export default function App() {
         <p className="mt-6 text-center text-xs text-stone-400">{t('disclaimer')}</p>
       </section>
 
-      <footer className="border-t border-stone-200 py-6 text-center text-sm text-stone-500 dark:border-stone-800 dark:text-stone-400">
+      <footer className="border-t border-stone-200 py-6 text-center text-sm text-stone-500 transition-colors duration-300 dark:border-stone-800 dark:text-stone-400">
         Karnataka Yatra AI — {t('footer')}
       </footer>
 

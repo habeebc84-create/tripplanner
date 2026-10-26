@@ -2,6 +2,14 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -11,6 +19,7 @@ body {
     "Helvetica Neue", Arial, sans-serif;
   background-color: #faf7f2;
   color: #1c1917;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dark body {
@@ -40,15 +49,6 @@ body {
   }
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @keyframes grow-bar {
   from {
     width: 0;
@@ -65,10 +65,6 @@ body {
 
 .animate-float-slow {
   animation: float-slow 7s ease-in-out infinite;
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
 }
 
 .animate-grow-bar {
