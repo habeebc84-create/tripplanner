@@ -18,8 +18,8 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
 
   return (
     <div className="min-h-screen bg-[#faf7f2] text-stone-900 transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100">
-      {/* Top bar — round dock at the top of the page only; it scrolls away and never follows you down */}
-      <header className="relative z-30 px-3 pt-3 sm:px-4">
+      {/* Top bar — round dock overlaid on the hero photo at the very top; it scrolls away and never follows you down */}
+      <header className="absolute inset-x-0 top-0 z-30 px-3 pt-3 sm:px-4">
         <div className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-stone-200 bg-[#faf7f2]/90 px-4 py-2 shadow-lg backdrop-blur transition-colors duration-300 dark:border-stone-800 dark:bg-stone-950/90">
         <span className="flex items-center gap-2">
           <img src="/logo-badge.svg" alt="Karnataka Yatra AI logo" className="h-10 w-10 rounded-full object-cover" />
@@ -58,7 +58,7 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
         </div>
       </header>
 
-      {/* Hero — full-width Palace photo with clear text over it */}
+      {/* Hero — Palace photo in full cover from the very top, dock overlaid on it */}
       <section className="relative bg-gradient-to-br from-orange-700 via-amber-800 to-stone-900">
         <img
           src="https://pub-0f3ca40c378b41b2b74bb464f98f62e2.r2.dev/locations/bangalore-palace/1787808805751-27811341995_6e10abef04_k.jpg"
@@ -69,7 +69,7 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
-        <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-6xl flex-col items-center justify-center px-4 py-20 text-center">
+        <div className="relative z-10 mx-auto flex min-h-svh max-w-6xl flex-col items-center justify-center px-4 pt-28 pb-20 text-center">
           <span className="animate-fade-up">
             <img
               src="/logo-badge.svg"

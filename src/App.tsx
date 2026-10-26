@@ -43,6 +43,7 @@ import {
 import { formatINR, generateItinerary } from './lib/planner';
 import { mapsDirectionsUrl } from './lib/maps';
 import PlaceDetail from './components/PlaceDetail';
+import DotBackground from './components/DotBackground';
 import BengaluruSection from './components/BengaluruSection';
 import HomePage from './pages/Home';
 import {
@@ -251,7 +252,9 @@ export default function App() {
 
   if (view === 'home') {
     return (
-      <HomePage
+      <>
+        <DotBackground dark={theme === 'dark'} />
+        <HomePage
         lang={lang}
         onLangChange={setLang}
         theme={theme}
@@ -269,11 +272,13 @@ export default function App() {
           );
         }}
       />
+      </>
     );
   }
 
   return (
     <div className="min-h-screen bg-[#faf7f2] text-stone-900 transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100">
+      <DotBackground dark={theme === 'dark'} />
       {/* Header — round dock at the top of the page only; it scrolls away and never follows you down */}
       <header className="relative z-30 px-3 pt-3 sm:px-4">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 rounded-full border border-stone-200 bg-[#faf7f2]/90 px-4 py-2 shadow-lg backdrop-blur transition-colors duration-300 dark:border-stone-800 dark:bg-stone-950/90">
