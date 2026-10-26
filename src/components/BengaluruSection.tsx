@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BedDouble, Bus, MapPin, Navigation, Route } from 'lucide-react';
-import { BENGALURU_PLACES, type BengaluruCategory } from '../data/bengaluru';
+import { BENGALURU_PLACES, type BengaluruCategory, type BengaluruPlace } from '../data/bengaluru';
+import BengaluruPlaceDetail from './BengaluruPlaceDetail';
 import { tr, type Lang } from '../lib/i18n';
 import { hotelsSearchUrl, mapsDirectionsTransitUrl, mapsSearchUrl } from '../lib/maps';
 
@@ -16,6 +17,7 @@ export default function BengaluruSection({
   const t = (key: string) => tr(lang, key);
   const [category, setCategory] = useState<BengaluruCategory | 'all'>('all');
   const [selectedId, setSelectedId] = useState('lalbagh');
+  const [detail, setDetail] = useState<BengaluruPlace | null>(null);
 
   const selected = BENGALURU_PLACES.find((p) => p.id === selectedId) ?? BENGALURU_PLACES[0];
   const visible = category === 'all' ? BENGALURU_PLACES : BENGALURU_PLACES.filter((p) => p.category === category);
@@ -59,7 +61,10 @@ export default function BengaluruSection({
           {BENGALURU_PLACES.filter((p) => p.image).map((p) => (
             <button
               key={p.id}
-              onClick={() => setSelectedId(p.id)}
+              onClick={() => {
+                setSelectedId(p.id);
+                setDetail(p);
+              }}
               className={`group w-48 shrink-0 overflow-hidden rounded-2xl border text-left shadow-sm transition hover:-translate-y-0.5 ${
                 p.id === selectedId
                   ? 'border-orange-500 ring-2 ring-orange-500/40'
@@ -111,7 +116,7 @@ export default function BengaluruSection({
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <a
-                href={mapsDirectionsTransitUrl('Kempegowda Bus Station, Bengaluru', selected.name)}
+                href={mapsDirectionsTransitUrl('Kempegowda Bus Station, Bengaluru', selected.name + ', Bengaluru')}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1.5 rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-700"
@@ -144,7 +149,10 @@ export default function BengaluruSection({
           {visible.map((p) => (
             <button
               key={p.id}
-              onClick={() => setSelectedId(p.id)}
+              onClick={() => {
+                setSelectedId(p.id);
+                setDetail(p);
+              }}
               className={`rounded-3xl border p-4 text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md ${
                 p.id === selectedId
                   ? 'border-orange-500 bg-orange-50 dark:border-orange-500 dark:bg-orange-900/20'
@@ -186,6 +194,18 @@ export default function BengaluruSection({
       >
         <Route size={15} /> {t('planBengaluruDay')}
       </button>
+
+      {detail && (
+        <BengaluruPlaceDetail
+          place={detail}
+          lang={lang}
+          onClose={() => setDetail(null)}
+          onPlanBengaluruDay={() => {
+            setDetail(null);
+            onPlanBengaluruDay();
+          }}
+        />
+      )}
     </section>
   );
 }
