@@ -8,6 +8,7 @@ export interface PdfMeta {
   pace: Pace;
   group: Group;
   startCity: string;
+  interestsCount: number;
 }
 
 /**
@@ -47,7 +48,7 @@ export function exportItineraryPdf(itinerary: Itinerary, meta: PdfMeta) {
   y += 10;
 
   line(
-    `${meta.days}-day trip · ${meta.budget} budget · ${meta.pace} pace · ${meta.group} (${GROUP_SIZE[meta.group]} traveller(s)) · ${itinerary.matchScore}% interest match`,
+    `${meta.days}-day trip · ${meta.budget} budget · ${meta.pace} pace · ${meta.group} (${GROUP_SIZE[meta.group]} traveller(s)) · ${meta.interestsCount > 0 ? `${itinerary.matchScore}% interest match` : 'top-rated picks'}`,
     11,
   );
   gap();

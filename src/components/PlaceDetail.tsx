@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Bus, CalendarDays, Car, Heart, MapPin, Route, Star, Train, Wallet, X, BedDouble, ExternalLink } from 'lucide-react';
 import type { BudgetTier, Destination } from '../data/destinations';
 import { formatINR } from '../lib/planner';
@@ -25,6 +26,14 @@ export default function PlaceDetail({
 }: PlaceDetailProps) {
   const t = (key: string) => tr(lang, key);
   const interestLabel = INTEREST_LABELS_I18N[lang];
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
 
   return (
     <div
@@ -101,7 +110,7 @@ export default function PlaceDetail({
                 <span>
                   {place.travel.bus}{' '}
                   <a
-                    href={mapsDirectionsTransitUrl('Kempegowda Bus Station, Bengaluru', place.name)}
+                    href={mapsDirectionsTransitUrl('Kempegowda Bus Station, Bengaluru', place.name + ', Karnataka')}
                     target="_blank"
                     rel="noreferrer"
                     className="font-semibold text-orange-600 underline"
@@ -115,7 +124,7 @@ export default function PlaceDetail({
                 <span>
                   {place.travel.train}{' '}
                   <a
-                    href={mapsDirectionsTransitUrl('KSR Bengaluru City Railway Station', place.name)}
+                    href={mapsDirectionsTransitUrl('KSR Bengaluru City Railway Station', place.name + ', Karnataka')}
                     target="_blank"
                     rel="noreferrer"
                     className="font-semibold text-orange-600 underline"
@@ -185,6 +194,12 @@ export default function PlaceDetail({
             className="flex w-full items-center justify-center gap-2 rounded-2xl bg-orange-600 px-6 py-3.5 font-bold text-white transition hover:scale-[1.01] hover:bg-orange-700"
           >
             <Route size={18} /> {t('planAround')}
+          </button>
+          <button
+            onClick={onClose}
+            className="flex w-full items-center justify-center gap-2 rounded-2xl border border-stone-300 px-6 py-3 font-bold transition hover:border-orange-400 dark:border-stone-700"
+          >
+            <X size={18} /> Close
           </button>
         </div>
       </div>

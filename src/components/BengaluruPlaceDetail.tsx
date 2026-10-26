@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BedDouble, Bus, CalendarDays, MapPin, Navigation, Route, Ticket, Train, X } from 'lucide-react';
 import type { BengaluruPlace } from '../data/bengaluru';
 import { tr, type Lang } from '../lib/i18n';
@@ -18,6 +19,14 @@ export default function BengaluruPlaceDetail({
 }: BengaluruPlaceDetailProps) {
   const t = (key: string) => tr(lang, key);
   const destination = `${place.name}, Bengaluru`;
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
 
   return (
     <div
@@ -143,6 +152,12 @@ export default function BengaluruPlaceDetail({
             className="flex items-center gap-2 rounded-full bg-stone-900 px-5 py-2.5 text-sm font-bold text-white hover:bg-stone-800 dark:bg-orange-600 dark:hover:bg-orange-700"
           >
             <Route size={15} /> {t('planBengaluruDay')}
+          </button>
+          <button
+            onClick={onClose}
+            className="flex items-center gap-2 rounded-full border border-stone-300 px-5 py-2.5 text-sm font-bold hover:border-orange-400 dark:border-stone-700"
+          >
+            <X size={15} /> Close
           </button>
         </div>
       </div>

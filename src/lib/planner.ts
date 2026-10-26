@@ -106,8 +106,15 @@ function buildDayPlans(
             GENERIC_EVENINGS[(day + stop.destination.id.length) % GENERIC_EVENINGS.length])
           : GENERIC_EVENINGS[(day + stop.destination.id.length) % GENERIC_EVENINGS.length];
       // Pin-to-pin leg: only the first day of a stop involves travel.
+      // No travel line when the trip already starts in that place.
       const travelFrom =
-        i === 0 ? (si === 0 ? startCity : stops[si - 1].destination.name) : null;
+        i === 0
+          ? si === 0
+            ? startCity === stop.destination.name
+              ? null
+              : startCity
+            : stops[si - 1].destination.name
+          : null;
       const travelKm =
         i === 0 && si === 0 && startCity === 'Bengaluru'
           ? stop.destination.distanceFromBengaluruKm
