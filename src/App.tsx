@@ -802,7 +802,7 @@ export default function App() {
               className="cursor-pointer overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-stone-800 dark:bg-stone-900"
             >
               {d.image ? (
-                <div className="relative">
+                <div className={`relative min-h-44 bg-gradient-to-br ${d.gradient}`}>
                   <img
                     src={d.image}
                     alt={d.name}

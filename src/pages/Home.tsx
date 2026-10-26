@@ -127,15 +127,17 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
             >
               {d.image ? (
                 <>
-                  <img
-                    src={d.image}
-                    alt={d.name}
-                    loading="lazy"
-                    className="h-44 w-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
-                  />
+                  <div className="h-44 w-full bg-gradient-to-br from-orange-500 via-amber-500 to-rose-500">
+                    <img
+                      src={d.image}
+                      alt={d.name}
+                      loading="lazy"
+                      className="h-44 w-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  </div>
                   <div className="px-5 py-4">
                     <p className="text-xs font-bold tracking-wide text-orange-600 uppercase">{d.region}</p>
                     <h3 className="mt-1 text-xl font-extrabold">{d.name}</h3>

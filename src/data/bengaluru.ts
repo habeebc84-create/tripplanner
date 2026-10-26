@@ -131,6 +131,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'tipu-palace',
     name: "Tipu Sultan's Summer Palace",
+    image: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Tippu_Sultan%27s_Summer_palace.jpg',
     category: 'museums',
     area: 'KR Market',
     description:
@@ -145,6 +146,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'madivala-lake',
     name: 'Madivala Lake',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Madiwala_Lake%2C_Bangalore.jpg',
     category: 'parks',
     area: 'BTM Layout',
     description:
@@ -158,6 +160,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'sankey-tank',
     name: 'Sankey Tank',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/0/02/Sankey_Tank.jpg',
     category: 'parks',
     area: 'Sadashivanagar',
     description:
@@ -171,6 +174,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'hebbal-lake',
     name: 'Hebbal Lake',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Hebbal_lake_water.jpg',
     category: 'parks',
     area: 'Hebbal',
     description:
@@ -184,6 +188,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'turahalli-forest',
     name: 'Turahalli Forest',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/Thurahalli%2C_Bengaluru%2C_Karnataka_560062%2C_India_-_panoramio_%282%29.jpg',
     category: 'parks',
     area: 'Kanakapura Road',
     description:
@@ -210,6 +215,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'ulsoor-lake',
     name: 'Ulsoor Lake',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/5/5d/Ulsoor_lake_Bangalore_India.jpg',
     category: 'parks',
     area: 'Ulsoor',
     description:
@@ -224,6 +230,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'gavi-gangadhareshwara',
     name: 'Gavi Gangadhareshwara Temple',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/a/a8/A_trident_outside_Gavigangadareswara_temple_in_Bangalore.jpg',
     category: 'temples',
     area: 'Gavipuram',
     description:
@@ -237,6 +244,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'banashankari-temple',
     name: 'Banashankari Temple',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Sri_Banashankari_Temple%2C_Bengaluru_%282024%29_03.jpg',
     category: 'temples',
     area: 'Banashankari',
     description:
@@ -250,6 +258,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'kadalekai-parishe',
     name: 'Kadalekai Parishe Grounds',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/5/55/Basavanagudi_Kadalekai_Parishe_%282025%29_Bangalore_%28103%29.jpg',
     category: 'temples',
     area: 'Basavanagudi',
     description:
@@ -263,6 +272,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'government-museum',
     name: 'Government Museum',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/e/e9/Government_Museum_Banglore_305.jpg',
     category: 'museums',
     area: 'Kasturba Road',
     description:
@@ -275,6 +285,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'hal-museum',
     name: 'HAL Aerospace Museum',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/HAL_Museum_Bengaluru.jpg',
     category: 'museums',
     area: 'Old Airport Road',
     description:
@@ -288,6 +299,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'chitrakala-parishath',
     name: 'Karnataka Chitrakala Parishath',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Citrakala_Parishat.jpg',
     category: 'museums',
     area: 'Kumara Krupa Road',
     description:
@@ -300,6 +312,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'rangoli-metro-art',
     name: 'Rangoli Metro Art Center',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Rangoli_-_Namma_Metro_Art_Center.jpg',
     category: 'museums',
     area: 'MG Road',
     description:
@@ -312,6 +325,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'planetarium',
     name: 'Jawaharlal Nehru Planetarium',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Jawaharlal_Nehru_Planetarium%2C_Bangalore_02.jpg',
     category: 'museums',
     area: 'High Grounds',
     description:
@@ -353,6 +367,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'church-street',
     name: 'Church Street',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Church_Street_in_night%2C_Bangalore_%282022%29.jpg',
     category: 'shopping',
     area: 'Central Bengaluru',
     description:
@@ -365,6 +380,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'phoenix-marketcity',
     name: 'Phoenix Marketcity',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/c/c5/Phoenix-marketcity-BLR-1.jpg',
     category: 'shopping',
     area: 'Whitefield',
     description:
@@ -377,6 +393,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'orion-mall',
     name: 'Orion Mall',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Orion_Mall%2C_Rajajinagar%2C_Bangalore_%282025%29_43.jpg',
     category: 'shopping',
     area: 'Brigade Gateway, Rajajinagar',
     description:
@@ -391,6 +408,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'innovative-film-city',
     name: 'Innovative Film City',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Entrance_Building_Structure_Film_City_Gate_%2848186394397%29.jpg',
     category: 'entertainment',
     area: 'Mysuru Road, Bidadi',
     description:
@@ -418,6 +436,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'fun-world',
     name: 'Fun World',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Fun_world_bangalore.jpg',
     category: 'entertainment',
     area: 'Palace Grounds',
     description:
@@ -431,6 +450,7 @@ export const BENGALURU_PLACES: BengaluruPlace[] = [
   {
     id: 'chinnaswamy-stadium',
     name: 'M. Chinnaswamy Stadium',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/5/52/Chinnaswamy_Stadium.jpg',
     category: 'entertainment',
     area: 'MG Road',
     description:

@@ -39,14 +39,17 @@ export default function BengaluruPlaceDetail({
       >
         <div className="relative">
           {place.image ? (
-            <img
-              src={place.image}
-              alt={place.name}
-              className="h-56 w-full object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = 'none';
-              }}
-            />
+            <>
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-amber-500 to-rose-500" />
+              <img
+                src={place.image}
+                alt={place.name}
+                className="relative h-56 w-full object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
+            </>
           ) : (
             <div className="h-40 w-full bg-gradient-to-br from-orange-500 via-amber-500 to-rose-500" />
           )}

@@ -65,7 +65,7 @@ export default function BengaluruSection({
                 setSelectedId(p.id);
                 setDetail(p);
               }}
-              className={`group w-48 shrink-0 overflow-hidden rounded-2xl border text-left shadow-sm transition hover:-translate-y-0.5 ${
+              className={`group w-48 shrink-0 overflow-hidden rounded-2xl border bg-gradient-to-br from-orange-500 via-amber-500 to-rose-500 text-left shadow-sm transition hover:-translate-y-0.5 ${
                 p.id === selectedId
                   ? 'border-orange-500 ring-2 ring-orange-500/40'
                   : 'border-stone-200 dark:border-stone-800'
@@ -164,7 +164,7 @@ export default function BengaluruSection({
                   : 'border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900'
               }`}
             >
-              {p.image && (
+              {p.image ? (
                 <img
                   src={p.image}
                   alt={p.name}
@@ -174,6 +174,10 @@ export default function BengaluruSection({
                     (e.target as HTMLImageElement).style.display = 'none';
                   }}
                 />
+              ) : (
+                <div className="mb-3 flex h-36 w-full items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 via-amber-500 to-rose-500">
+                  <MapPin size={28} className="text-white/80" />
+                </div>
               )}
               <p className="text-xs font-bold tracking-wide text-orange-600 uppercase">
                 {t(`cat_${p.category}`)}
