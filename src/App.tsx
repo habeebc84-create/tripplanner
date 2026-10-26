@@ -41,7 +41,6 @@ import {
 } from './data/destinations';
 import { formatINR, generateItinerary } from './lib/planner';
 import { mapsDirectionsUrl } from './lib/maps';
-import Logo from './components/Logo';
 import PlaceDetail from './components/PlaceDetail';
 import BengaluruSection from './components/BengaluruSection';
 import HomePage from './pages/Home';
@@ -273,7 +272,7 @@ export default function App() {
       <header className="sticky top-3 z-30 px-3 pt-3 sm:px-4">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 rounded-full border border-stone-200 bg-[#faf7f2]/90 px-4 py-2 shadow-lg backdrop-blur transition-colors duration-300 dark:border-stone-800 dark:bg-stone-950/90">
           <button onClick={() => setView('home')} className="flex items-center gap-2">
-            <Logo size={36} />
+            <img src="/logo-badge.svg" alt="Karnataka Yatra AI logo" className="h-10 w-10 rounded-full object-cover" />
             <span className="text-lg font-bold tracking-tight">
               Karnataka Yatra <span className="text-orange-600">AI</span>
             </span>

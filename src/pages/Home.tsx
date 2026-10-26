@@ -1,7 +1,6 @@
 import { ArrowRight, CalendarDays, MapPin, Moon, Sparkles, Star, Sun, Wallet } from 'lucide-react';
 import { DESTINATIONS, type Destination } from '../data/destinations';
 import { LANG_META, tr, type Lang } from '../lib/i18n';
-import Logo from '../components/Logo';
 
 interface HomePageProps {
   lang: Lang;
@@ -23,7 +22,7 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
       <header className="sticky top-3 z-30 px-3 pt-3 sm:px-4">
         <div className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-stone-200 bg-[#faf7f2]/90 px-4 py-2 shadow-lg backdrop-blur transition-colors duration-300 dark:border-stone-800 dark:bg-stone-950/90">
         <span className="flex items-center gap-2">
-          <Logo size={36} />
+          <img src="/logo-badge.svg" alt="Karnataka Yatra AI logo" className="h-10 w-10 rounded-full object-cover" />
           <span className="text-lg font-bold tracking-tight">
             Karnataka Yatra <span className="text-orange-600">AI</span>
           </span>
@@ -71,7 +70,13 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
         <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-6xl flex-col items-center justify-center px-4 py-20 text-center">
-          <span className="animate-fade-up"><Logo size={88} /></span>
+          <span className="animate-fade-up">
+            <img
+              src="/logo-badge.svg"
+              alt="Karnataka Yatra AI logo"
+              className="h-36 w-36 rounded-full object-cover shadow-xl ring-4 ring-white/40"
+            />
+          </span>
           <p className="animate-fade-up mt-5 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-xs font-bold tracking-wide text-orange-700 uppercase">
             <Sparkles size={14} /> {t('heroBadge')}
           </p>
