@@ -1,15 +1,19 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
   CalendarDays,
+  Car,
   Clock,
   Compass,
   Copy,
   Download,
+  FileDown,
   Gauge,
   Heart,
   House,
   Landmark,
+  Languages,
   LayoutDashboard,
+  MapPin,
   Moon,
   Mountain,
   Music,
@@ -231,6 +235,13 @@ export default function App() {
         theme={theme}
         onThemeToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         onEnter={() => setView('app')}
+        onAbout={() => {
+          setView('app');
+          setTimeout(
+            () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }),
+            150,
+          );
+        }}
       />
     );
   }
@@ -253,6 +264,7 @@ export default function App() {
             <a href="#planner" className="hover:text-orange-600">{t('navPlanner')}</a>
             <a href="#destinations" className="hover:text-orange-600">{t('navDestinations')}</a>
             <a href="#how" className="hover:text-orange-600">{t('navHow')}</a>
+            <a href="#about" className="hover:text-orange-600">{t('navAbout')}</a>
           </nav>
           <div className="flex items-center gap-2">
             <div className="flex rounded-full bg-stone-100 p-1 dark:bg-stone-800">
@@ -327,7 +339,7 @@ export default function App() {
                 onChange={(e) => setDays(Number(e.target.value))}
                 className="w-full accent-orange-600"
               />
-              <div className="flex justify-between text-xs text-stone-500">
+              <div className="flex justify-between text-xs text-stone-500 dark:text-stone-400">
                 <span>2 {t('daysUnit')}</span>
                 <span>7 {t('daysUnit')}</span>
               </div>
@@ -421,6 +433,15 @@ export default function App() {
                     className="flex items-center gap-2 rounded-full border border-stone-300 px-4 py-2 text-sm font-semibold hover:border-orange-400 dark:border-stone-700"
                   >
                     <Download size={15} /> {t('downloadPlan')}
+                  </button>
+                  <button
+                    onClick={async () => {
+                      const { exportItineraryPdf } = await import('./lib/exportPdf');
+                      exportItineraryPdf(itinerary, { days, budget, pace, group });
+                    }}
+                    className="flex items-center gap-2 rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-700"
+                  >
+                    <FileDown size={15} /> {t('exportPdf')}
                   </button>
                 </div>
               </div>
@@ -573,6 +594,20 @@ export default function App() {
                           </span>
                         </p>
                         <ul className="mt-2 space-y-1 text-sm text-stone-600 dark:text-stone-300">
+                          {d.travelFrom && (
+                            <li className="flex gap-2">
+                              <Car size={15} className="mt-0.5 shrink-0 text-orange-600" />
+                              <span>
+                                <b>
+                                  {d.travelKm != null && d.travelKm > 0
+                                    ? `${t('travelFrom')} · ${d.travelKm} km`
+                                    : d.travelFrom === 'Bengaluru'
+                                      ? t('travelFrom')
+                                      : `${t('travelBetween')}: ${d.travelFrom} → ${d.destination.name}`}
+                                </b>
+                              </span>
+                            </li>
+                          )}
                           <li className="flex gap-2">
                             <Sun size={15} className="mt-0.5 shrink-0 text-amber-500" />
                             <span><b>{t('morning')}:</b> {d.morning}</span>
@@ -584,6 +619,10 @@ export default function App() {
                           <li className="flex gap-2">
                             <Star size={15} className="mt-0.5 shrink-0 text-violet-600" />
                             <span><b>{t('evening')}:</b> {d.evening}</span>
+                          </li>
+                          <li className="flex gap-2">
+                            <Wallet size={15} className="mt-0.5 shrink-0 text-emerald-600" />
+                            <span><b>{t('dayCost')}:</b> {formatINR(d.dayCost)} · {t('stayIn')} {d.destination.name}</span>
                           </li>
                         </ul>
                       </div>
@@ -739,6 +778,30 @@ export default function App() {
           ))}
         </div>
         <p className="mt-6 text-center text-xs text-stone-400">{t('disclaimer')}</p>
+      </section>
+
+      {/* About */}
+      <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16">
+        <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition duration-300 dark:border-stone-800 dark:bg-stone-900 sm:p-8">
+          <h2 className="text-2xl font-bold">{t('aboutTitle')}</h2>
+          <p className="mt-3 max-w-3xl leading-relaxed text-stone-600 dark:text-stone-300">
+            {t('aboutText')}
+          </p>
+          <div className="mt-6 flex flex-wrap gap-6 text-sm">
+            <span className="flex items-center gap-2 font-semibold">
+              <MapPin size={16} className="text-orange-600" /> {DESTINATIONS.length} {t('statDest')}
+            </span>
+            <span className="flex items-center gap-2 font-semibold">
+              <Route size={16} className="text-orange-600" /> {new Set(DESTINATIONS.map((d) => d.region)).size} {t('regions')}
+            </span>
+            <span className="flex items-center gap-2 font-semibold">
+              <Languages size={16} className="text-orange-600" /> 3 {t('languages')}
+            </span>
+            <span className="flex items-center gap-2 font-semibold">
+              <Check size={16} className="text-orange-600" /> {t('noSignup')}
+            </span>
+          </div>
+        </div>
       </section>
 
       <footer className="border-t border-stone-200 py-6 text-center text-sm text-stone-500 transition-colors duration-300 dark:border-stone-800 dark:text-stone-400">

@@ -9,9 +9,10 @@ interface HomePageProps {
   theme: 'light' | 'dark';
   onThemeToggle: () => void;
   onEnter: () => void;
+  onAbout: () => void;
 }
 
-export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onEnter }: HomePageProps) {
+export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onEnter, onAbout }: HomePageProps) {
   const t = (key: string) => tr(lang, key);
   const topPicks = [...DESTINATIONS].sort((a, b) => b.rating - a.rating).slice(0, 6);
 
@@ -26,6 +27,12 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
           </span>
         </span>
         <span className="flex items-center gap-2">
+          <button
+            onClick={onAbout}
+            className="hidden rounded-full px-3 py-1.5 text-sm font-semibold text-stone-600 hover:text-orange-600 sm:block dark:text-stone-300"
+          >
+            {t('navAbout')}
+          </button>
           <span className="flex rounded-full bg-stone-100 p-1 dark:bg-stone-800">
             {(Object.keys(LANG_META) as Lang[]).map((l) => (
               <button

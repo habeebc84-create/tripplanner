@@ -24,6 +24,12 @@ export interface DayPlan {
   morning: string;
   afternoon: string;
   evening: string;
+  /** Where the day starts travelling from (null when staying in place). */
+  travelFrom: string | null;
+  /** Known road distance in km for the Bengaluru first leg (null otherwise). */
+  travelKm: number | null;
+  /** Indicative cost for this day, for the whole group. */
+  dayCost: number;
 }
 
 export interface CostBreakdown {
@@ -75,11 +81,14 @@ const GENERIC_EVENINGS = [
 function buildDayPlans(
   stops: { destination: Destination; days: number }[],
   pace: Pace,
+  budget: BudgetTier,
+  travellers: number,
 ): DayPlan[] {
   const plans: DayPlan[] = [];
   let day = 1;
   const slots = PACE_SLOTS[pace];
-  for (const stop of stops) {
+  for (let si = 0; si < stops.length; si++) {
+    const stop = stops[si];
     const highlights = [...stop.destination.highlights];
     for (let i = 0; i < stop.days; i++) {
       const morning = highlights.shift() ?? `Slow morning in ${stop.destination.name}`;
@@ -90,7 +99,21 @@ function buildDayPlans(
           ? (highlights.shift() ??
             GENERIC_EVENINGS[(day + stop.destination.id.length) % GENERIC_EVENINGS.length])
           : GENERIC_EVENINGS[(day + stop.destination.id.length) % GENERIC_EVENINGS.length];
-      plans.push({ day: day++, destination: stop.destination, morning, afternoon, evening });
+      // Pin-to-pin leg: only the first day of a stop involves travel.
+      const travelFrom =
+        i === 0 ? (si === 0 ? 'Bengaluru' : stops[si - 1].destination.name) : null;
+      const travelKm =
+        i === 0 && si === 0 ? stop.destination.distanceFromBengaluruKm : null;
+      plans.push({
+        day: day++,
+        destination: stop.destination,
+        morning,
+        afternoon,
+        evening,
+        travelFrom,
+        travelKm,
+        dayCost: Math.round(stop.destination.costPerDay[budget] * travellers),
+      });
     }
   }
   return plans;
@@ -127,7 +150,7 @@ export function generateItinerary(input: PlannerInput): Itinerary {
     remaining -= useDays;
   }
 
-  const dayPlans = buildDayPlans(stops, pace);
+  const dayPlans = buildDayPlans(stops, pace, budget, travellers);
 
   // Cost model (indicative, per person): stay ~45%, food ~25%, activities ~15%,
   // plus intercity transport hops between stops.

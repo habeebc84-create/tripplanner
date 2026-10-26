@@ -22,6 +22,13 @@ Built for the **Travel & Tourism** hackathon track.
   activities, scaled by budget tier and group size.
 - **Regenerate + copy** — reshuffle close calls for a fresh plan, or copy the
   whole plan as text to share.
+- **Pin-to-pin day plans** — every day shows where to go, how you get there
+  (Bengaluru first leg with distance, then stop-to-stop legs), what to do
+  morning/afternoon/evening, that day's cost, and where to stay.
+- **Export PDF** — download a formatted PDF of the whole itinerary
+  (English; amounts shown as Rs. for font compatibility).
+- **About section** — what the planner is, its coverage (34 destinations,
+  5 regions, 3 languages), and its no-sign-up, on-device privacy promise.
 - **Destination explorer** — 34 famous places across Karnataka (Mysuru, Hampi, Coorg, Gokarna,
   Chikmagalur, Badami, Udupi, Kabini, Jog Falls, Dandeli, Murudeshwar,
   Belur–Halebidu, Bandipur, Vijayapura, Sakleshpur, Bengaluru, Shravanabelagola,
