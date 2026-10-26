@@ -113,6 +113,7 @@ export default function App() {
     }
   });
   const [view, setView] = useState<'home' | 'app'>('home');
+  const [dockVisible, setDockVisible] = useState(true);
 
   const t = (key: string) => tr(lang, key);
   const interestLabel = INTEREST_LABELS_I18N[lang];
@@ -144,6 +145,25 @@ export default function App() {
       /* private mode */
     }
   }, [favourites]);
+
+  // App dock: hide while scrolling, slide back in once scrolling stops.
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const onScroll = () => {
+      if (window.scrollY <= 0) {
+        setDockVisible(true);
+        return;
+      }
+      setDockVisible(false);
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => setDockVisible(true), 250);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
 
   const toggleFavourite = (id: string) =>
     setFavourites((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
@@ -279,8 +299,8 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#faf7f2] text-stone-900 transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100">
       <DotBackground dark={theme === 'dark'} />
-      {/* Header — round dock at the top of the page only; it scrolls away and never follows you down */}
-      <header className="relative z-30 px-3 pt-3 sm:px-4">
+      {/* Header — round dock: slides away while scrolling, comes back when scrolling stops */}
+      <header className={`fixed inset-x-0 top-0 z-30 px-3 pt-3 transition-transform duration-300 sm:px-4 ${dockVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 rounded-full border border-stone-200 bg-[#faf7f2]/90 px-4 py-2 shadow-lg backdrop-blur transition-colors duration-300 dark:border-stone-800 dark:bg-stone-950/90">
           <button onClick={() => setView('home')} className="flex items-center gap-2">
             <img src="/logo-badge.svg" alt="Karnataka Yatra AI logo" className="h-10 w-10 rounded-full object-cover" />
@@ -330,7 +350,7 @@ export default function App() {
       </header>
 
       {/* Planner */}
-      <section id="planner" className="animate-fade-up mx-auto max-w-6xl scroll-mt-20 px-4 pt-10 pb-14">
+      <section id="planner" className="animate-fade-up mx-auto max-w-6xl scroll-mt-24 px-4 pt-24 pb-14">
         <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm transition duration-300 hover:shadow-md dark:border-stone-800 dark:bg-stone-900 sm:p-7">
           <h2 className="text-2xl font-bold">{t('plannerTitle')}</h2>
           <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{t('plannerSub')}</p>

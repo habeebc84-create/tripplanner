@@ -47,10 +47,10 @@ export default function DotBackground({ dark }: { dark: boolean }) {
       dots = Array.from({ length: count }, (_, i) => ({
         bx: Math.random() * w,
         by: Math.random() * h,
-        r: 1 + Math.random() * 1.8,
+        r: 1.5 + Math.random() * 1.8,
         depth: 0.15 + Math.random() * 0.5,
         phase: Math.random() * Math.PI * 2,
-        speed: 0.008 + Math.random() * 0.02,
+        speed: 0.012 + Math.random() * 0.022,
         angle: Math.random() * Math.PI * 2,
         hue: COLORS[i % COLORS.length],
       }));
@@ -84,8 +84,8 @@ export default function DotBackground({ dark }: { dark: boolean }) {
       ctx.clearRect(0, 0, w, h);
       const c = cursorRef.current;
       // Ease the swirl in/out so dots never snap when the cursor arrives/leaves.
-      swirl += ((c.active ? 1 : 0) - swirl) * 0.08;
-      const alpha = darkRef.current ? 0.6 : 0.45;
+      swirl += ((c.active ? 1 : 0) - swirl) * 0.12;
+      const alpha = darkRef.current ? 0.7 : 0.55;
       for (const d of dots) {
         d.angle += d.speed;
         const driftX = Math.sin(t * 0.0002 + d.phase) * 8;
@@ -100,7 +100,7 @@ export default function DotBackground({ dark }: { dark: boolean }) {
           const dx = x - c.x;
           const dy = y - c.y;
           const dist = Math.hypot(dx, dy);
-          const R = 180;
+          const R = 200;
           if (dist < R) {
             const weight = (1 - dist / R) * swirl;
             const rot = d.angle * weight;
@@ -128,7 +128,10 @@ export default function DotBackground({ dark }: { dark: boolean }) {
     window.addEventListener('resize', resize);
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     window.addEventListener('touchmove', onTouchMove, { passive: true });
-    window.addEventListener('mouseout', onLeave);
+    // NOTE: window 'mouseout' must not be used here — it bubbles from every
+    // element the cursor crosses, which kept killing the swirl. 'mouseleave'
+    // on the root element only fires when the cursor truly leaves the page.
+    document.documentElement.addEventListener('mouseleave', onLeave);
     window.addEventListener('touchend', onLeave);
     if (!reduced) raf = requestAnimationFrame(loop);
 
@@ -137,7 +140,7 @@ export default function DotBackground({ dark }: { dark: boolean }) {
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('touchmove', onTouchMove);
-      window.removeEventListener('mouseout', onLeave);
+      document.documentElement.removeEventListener('mouseleave', onLeave);
       window.removeEventListener('touchend', onLeave);
     };
   }, []);
