@@ -19,8 +19,9 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
 
   return (
     <div className="min-h-screen bg-[#faf7f2] text-stone-900 transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100">
-      {/* Top bar */}
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      {/* Top bar — floating round dock */}
+      <header className="sticky top-3 z-30 px-3 pt-3 sm:px-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-stone-200 bg-[#faf7f2]/90 px-4 py-2 shadow-lg backdrop-blur transition-colors duration-300 dark:border-stone-800 dark:bg-stone-950/90">
         <span className="flex items-center gap-2">
           <Logo size={36} />
           <span className="text-lg font-bold tracking-tight">
@@ -55,6 +56,7 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
         </span>
+        </div>
       </header>
 
       {/* Hero — full-width Palace photo with clear text over it */}

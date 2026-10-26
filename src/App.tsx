@@ -269,8 +269,9 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#faf7f2] text-stone-900 transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100">
       {/* Header */}
-      <header className="sticky top-0 z-20 border-b border-stone-200 bg-[#faf7f2]/90 backdrop-blur transition-colors duration-300 dark:border-stone-800 dark:bg-stone-950/90">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-3">
+      {/* Header — floating round dock */}
+      <header className="sticky top-3 z-30 px-3 pt-3 sm:px-4">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 rounded-full border border-stone-200 bg-[#faf7f2]/90 px-4 py-2 shadow-lg backdrop-blur transition-colors duration-300 dark:border-stone-800 dark:bg-stone-950/90">
           <button onClick={() => setView('home')} className="flex items-center gap-2">
             <Logo size={36} />
             <span className="text-lg font-bold tracking-tight">
