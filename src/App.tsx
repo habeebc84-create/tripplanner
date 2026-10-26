@@ -274,8 +274,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#faf7f2] text-stone-900 transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100">
-      {/* Header — floating round dock, pinned to the top only */}
-      <header className="fixed inset-x-0 top-3 z-30 px-3 pt-3 sm:px-4">
+      {/* Header — round dock at the top of the page only; it scrolls away and never follows you down */}
+      <header className="relative z-30 px-3 pt-3 sm:px-4">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 rounded-full border border-stone-200 bg-[#faf7f2]/90 px-4 py-2 shadow-lg backdrop-blur transition-colors duration-300 dark:border-stone-800 dark:bg-stone-950/90">
           <button onClick={() => setView('home')} className="flex items-center gap-2">
             <img src="/logo-badge.svg" alt="Karnataka Yatra AI logo" className="h-10 w-10 rounded-full object-cover" />
@@ -325,7 +325,7 @@ export default function App() {
       </header>
 
       {/* Planner */}
-      <section id="planner" className="animate-fade-up mx-auto max-w-6xl scroll-mt-28 px-4 pt-28 pb-14">
+      <section id="planner" className="animate-fade-up mx-auto max-w-6xl scroll-mt-20 px-4 pt-10 pb-14">
         <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm transition duration-300 hover:shadow-md dark:border-stone-800 dark:bg-stone-900 sm:p-7">
           <h2 className="text-2xl font-bold">{t('plannerTitle')}</h2>
           <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{t('plannerSub')}</p>
@@ -708,7 +708,7 @@ export default function App() {
       </section>
 
       {/* Destinations */}
-      <section id="destinations" className="mx-auto max-w-6xl scroll-mt-28 px-4 pb-14">
+      <section id="destinations" className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-14">
         <h2 className="text-2xl font-bold">{t('exploreTitle')}</h2>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{t('exploreSub')}</p>
         <div className="mt-4 flex flex-wrap gap-2">
@@ -870,7 +870,7 @@ export default function App() {
       />
 
       {/* How it works */}
-      <section id="how" className="mx-auto max-w-6xl scroll-mt-28 px-4 pb-16">
+      <section id="how" className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16">
         <h2 className="text-2xl font-bold">{t('howTitle')}</h2>
         <div className="mt-5 grid gap-4 sm:grid-cols-3">
           {[
@@ -891,7 +891,7 @@ export default function App() {
       </section>
 
       {/* About */}
-      <section id="about" className="mx-auto max-w-6xl scroll-mt-28 px-4 pb-16">
+      <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16">
         <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition duration-300 dark:border-stone-800 dark:bg-stone-900 sm:p-8">
           <h2 className="text-2xl font-bold">{t('aboutTitle')}</h2>
           <p className="mt-3 max-w-3xl leading-relaxed text-stone-600 dark:text-stone-300">

@@ -24,7 +24,7 @@ export default function BengaluruSection({
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(selected.name + ', Bengaluru')}&output=embed`;
 
   return (
-    <section id="bengaluru" className="mx-auto max-w-6xl scroll-mt-28 px-4 pb-14">
+    <section id="bengaluru" className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-14">
       <h2 className="text-2xl font-bold">{t('bengaluruTitle')}</h2>
       <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{t('bengaluruSub')}</p>
 
@@ -95,7 +95,7 @@ export default function BengaluruSection({
             <iframe
               title={selected.name}
               src={mapSrc}
-              className="h-[380px] w-full border-0"
+              className="h-[380px] w-full border-0 dark:[filter:invert(90%)_hue-rotate(180deg)]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />

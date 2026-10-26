@@ -18,8 +18,8 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
 
   return (
     <div className="min-h-screen bg-[#faf7f2] text-stone-900 transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100">
-      {/* Top bar — floating round dock, pinned to the top only */}
-      <header className="fixed inset-x-0 top-3 z-30 px-3 pt-3 sm:px-4">
+      {/* Top bar — round dock at the top of the page only; it scrolls away and never follows you down */}
+      <header className="relative z-30 px-3 pt-3 sm:px-4">
         <div className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-stone-200 bg-[#faf7f2]/90 px-4 py-2 shadow-lg backdrop-blur transition-colors duration-300 dark:border-stone-800 dark:bg-stone-950/90">
         <span className="flex items-center gap-2">
           <img src="/logo-badge.svg" alt="Karnataka Yatra AI logo" className="h-10 w-10 rounded-full object-cover" />
@@ -59,7 +59,7 @@ export default function HomePage({ lang, onLangChange, theme, onThemeToggle, onE
       </header>
 
       {/* Hero — full-width Palace photo with clear text over it */}
-      <section className="relative bg-stone-900">
+      <section className="relative bg-gradient-to-br from-orange-700 via-amber-800 to-stone-900">
         <img
           src="https://pub-0f3ca40c378b41b2b74bb464f98f62e2.r2.dev/locations/bangalore-palace/1787808805751-27811341995_6e10abef04_k.jpg"
           alt="Bangalore Palace"
